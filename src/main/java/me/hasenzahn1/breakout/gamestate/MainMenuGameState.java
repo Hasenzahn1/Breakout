@@ -1,14 +1,21 @@
 package me.hasenzahn1.breakout.gamestate;
 
+import me.hasenzahn1.breakout.Breakout;
+import me.hasenzahn1.breakout.image.ImageLoader;
+
 import java.awt.*;
+import java.awt.image.BufferedImage;
 
 public class MainMenuGameState extends GameState{
 
-    private float x = 0;
+    private final Breakout game;
+
+    public MainMenuGameState(Breakout game) {
+        this.game = game;
+    }
 
     @Override
     public void start() {
-        x = 0;
     }
 
     @Override
@@ -18,12 +25,9 @@ public class MainMenuGameState extends GameState{
 
     @Override
     public void tick(double deltaTime) {
-        x += 1 * deltaTime;
     }
 
     @Override
     public void render(Graphics g) {
-        g.setColor(Color.BLUE);
-        g.fillRect((int) x, 0, 10, 10);
     }
 }

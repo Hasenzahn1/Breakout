@@ -13,8 +13,8 @@ public class Breakout implements Runnable{
 
     //Display Code
     private Display display;
-    private int width, height;
-    private String title;
+    private final int width, height;
+    private final String title;
 
     //Thread and JFrame Stuff
     private boolean running = false;
@@ -38,7 +38,7 @@ public class Breakout implements Runnable{
         display = new Display(title, width, height);
         start = System.currentTimeMillis();
 
-        gameStateManager = new GameStateManager();
+        gameStateManager = new GameStateManager(this);
         gameStateManager.setGameState(GameState.MAIN_MENU_STATE);
     }
 

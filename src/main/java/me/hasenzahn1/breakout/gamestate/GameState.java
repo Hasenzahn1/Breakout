@@ -1,8 +1,10 @@
 package me.hasenzahn1.breakout.gamestate;
 
+import me.hasenzahn1.breakout.display.IDrawable;
+
 import java.awt.*;
 
-public abstract class GameState {
+public abstract class GameState implements IDrawable {
 
     public static final int MAIN_MENU_STATE = 0;
     public static final int LEVEL_SELECT_STATE = 1;
