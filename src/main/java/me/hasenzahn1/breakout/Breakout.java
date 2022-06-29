@@ -3,6 +3,7 @@ package me.hasenzahn1.breakout;
 import me.hasenzahn1.breakout.display.Display;
 import me.hasenzahn1.breakout.gamestate.GameState;
 import me.hasenzahn1.breakout.gamestate.GameStateManager;
+import me.hasenzahn1.breakout.listener.MouseListener;
 
 import java.awt.*;
 import java.awt.image.BufferStrategy;
@@ -26,6 +27,7 @@ public class Breakout implements Runnable{
 
     //GameStuff
     private GameStateManager gameStateManager;
+    private MouseListener listener;
 
 
     public Breakout(String title, int width, int height){
@@ -37,6 +39,9 @@ public class Breakout implements Runnable{
     private void init(){
         display = new Display(title, width, height);
         start = System.currentTimeMillis();
+
+        listener = new MouseListener();
+        display.getFrame().addMouseListener(listener);
 
         gameStateManager = new GameStateManager(this);
         gameStateManager.setGameState(GameState.MAIN_MENU_STATE);
