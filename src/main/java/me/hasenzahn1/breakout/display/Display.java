@@ -1,7 +1,5 @@
 package me.hasenzahn1.breakout.display;
 
-import me.hasenzahn1.breakout.listener.MouseListener;
-
 import javax.swing.*;
 import java.awt.*;
 

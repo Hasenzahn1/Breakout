@@ -3,7 +3,8 @@ package me.hasenzahn1.breakout;
 import me.hasenzahn1.breakout.display.Display;
 import me.hasenzahn1.breakout.gamestate.GameState;
 import me.hasenzahn1.breakout.gamestate.GameStateManager;
-import me.hasenzahn1.breakout.listener.MouseListener;
+import me.hasenzahn1.breakout.input.IMouseRegisterable;
+import me.hasenzahn1.breakout.input.MouseListener;
 
 import java.awt.*;
 import java.awt.image.BufferStrategy;
@@ -11,6 +12,7 @@ import java.awt.image.BufferStrategy;
 public class Breakout implements Runnable{
 
     private static final int FPS = 100000;
+    private static Breakout instance;
 
     //Display Code
     private Display display;
@@ -27,21 +29,23 @@ public class Breakout implements Runnable{
 
     //GameStuff
     private GameStateManager gameStateManager;
-    private MouseListener listener;
+    private MouseListener mouseListener;
 
 
     public Breakout(String title, int width, int height){
         this.title = title;
         this.width = width;
         this.height = height;
+        mouseListener = new MouseListener();
+        instance = this;
     }
 
     private void init(){
         display = new Display(title, width, height);
         start = System.currentTimeMillis();
 
-        listener = new MouseListener();
-        display.getFrame().addMouseListener(listener);
+        display.getFrame().addMouseListener(mouseListener);
+        display.getCanvas().addMouseListener(mouseListener);
 
         gameStateManager = new GameStateManager(this);
         gameStateManager.setGameState(GameState.MAIN_MENU_STATE);
@@ -128,6 +132,14 @@ public class Breakout implements Runnable{
         }catch (InterruptedException e){
             e.printStackTrace();
         }
+    }
+
+    public static Breakout getInstance() {
+        return instance;
+    }
+
+    public IMouseRegisterable getMouseRegisterable(){
+        return mouseListener;
     }
 
     public double getDeltaTime() {

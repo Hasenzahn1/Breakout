@@ -1,26 +1,29 @@
 package me.hasenzahn1.breakout.gamestate;
 
-import me.hasenzahn1.breakout.Breakout;
+import me.hasenzahn1.breakout.gui.Button;
 import me.hasenzahn1.breakout.image.ImageLoader;
 
 import java.awt.*;
-import java.awt.image.BufferedImage;
 
 public class MainMenuGameState extends GameState{
 
-    private final Breakout game;
+    private Button button;
 
-    public MainMenuGameState(Breakout game) {
-        this.game = game;
+    public MainMenuGameState() {
     }
 
     @Override
     public void start() {
+        button = new Button(10, 10, ImageLoader.loadImage("gui/kbm_mouse.png"), ImageLoader.loadImage("gui/kbm_keyboard.png"), (button) -> {
+            System.out.println(button + " clicked");
+        });
+        button.setResetOnRelease(false); // If the Button resets on Release (Level Select Btn)
+        button.setClicked(true); // Set the state of the button (false=image1/true=image2)
     }
 
     @Override
     public void end() {
-
+        button.remove(); //Remove in end because of listener
     }
 
     @Override
@@ -29,5 +32,6 @@ public class MainMenuGameState extends GameState{
 
     @Override
     public void render(Graphics g) {
+        button.render(g); //Always render the button
     }
 }
