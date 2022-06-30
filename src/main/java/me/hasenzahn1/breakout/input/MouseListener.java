@@ -29,14 +29,14 @@ public class MouseListener implements java.awt.event.MouseListener, IMouseRegist
     @Override
     public void mousePressed(MouseEvent e) {
         for(int i = clickables.size() - 1; i >= 0; i--){
-            clickables.get(i).onClick(e);
+            clickables.get(i).onPressed(e);
         }
     }
 
     @Override
     public void mouseReleased(MouseEvent e) {
         for(int i = clickables.size() - 1; i >= 0; i--){
-            clickables.get(i).onClick(e);
+            clickables.get(i).onRelease(e);
         }
     }
 
