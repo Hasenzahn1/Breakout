@@ -170,4 +170,8 @@ public class Breakout implements Runnable{
     public Settings getSettings() {
         return settings;
     }
+
+    public GameStateManager getGameStateManager() {
+        return gameStateManager;
+    }
 }
