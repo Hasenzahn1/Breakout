@@ -5,7 +5,6 @@ import me.hasenzahn1.breakout.gamestate.GameState;
 import me.hasenzahn1.breakout.gamestate.GameStateManager;
 import me.hasenzahn1.breakout.input.IMouseRegisterable;
 import me.hasenzahn1.breakout.input.MouseListener;
-import me.hasenzahn1.breakout.settings.Settings;
 
 import java.awt.*;
 import java.awt.image.BufferStrategy;
@@ -31,14 +30,13 @@ public class Breakout implements Runnable{
     //GameStuff
     private GameStateManager gameStateManager;
     private MouseListener mouseListener;
-    private Settings settings;
 
 
     public Breakout(String title, int width, int height){
         this.title = title;
         this.width = width;
         this.height = height;
-
+        mouseListener = new MouseListener();
         instance = this;
     }
 
@@ -46,11 +44,8 @@ public class Breakout implements Runnable{
         display = new Display(title, width, height);
         start = System.currentTimeMillis();
 
-        mouseListener = new MouseListener();
         display.getFrame().addMouseListener(mouseListener);
         display.getCanvas().addMouseListener(mouseListener);
-
-        settings = new Settings();
 
         gameStateManager = new GameStateManager(this);
         gameStateManager.setGameState(GameState.MAIN_MENU_STATE);
@@ -165,9 +160,5 @@ public class Breakout implements Runnable{
 
     public Display getDisplay() {
         return display;
-    }
-
-    public Settings getSettings() {
-        return settings;
     }
 }

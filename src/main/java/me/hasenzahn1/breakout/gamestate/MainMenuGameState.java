@@ -1,6 +1,5 @@
 package me.hasenzahn1.breakout.gamestate;
 
-import me.hasenzahn1.breakout.Breakout;
 import me.hasenzahn1.breakout.gui.Button;
 import me.hasenzahn1.breakout.image.ImageLoader;
 
@@ -13,18 +12,15 @@ public class MainMenuGameState extends GameState{
     private Button button2;
     private Button button3;
 
-    private Breakout game;
-
-    public MainMenuGameState(Breakout game) {
-        this.game = game;
+    public MainMenuGameState() {
     }
 
     @Override
     public void start() {
-        button = new Button(10, 10, 256, 128, ImageLoader.loadImage("gui/SFX_on.png"), ImageLoader.loadImage("gui/SFX_off.png"), (button) -> {
+        button = new Button(10, 10, 256, 64, ImageLoader.loadImage("gui/levelselection.png"), ImageLoader.loadImage("gui/levelselection_pressed.png"), (button) -> {
             System.out.println(button + " clicked");
         });
-        button.setResetOnRelease(false); // If the Button resets on Release (Level Select Btn)
+        button.setResetOnRelease(true); // If the Button resets on Release (Level Select Btn)
         button.setClicked(false); // Set the state of the button (false=image1/true=image2)
         button1 = new Button(288, 600, ImageLoader.loadImage("gui/SFX_off.png"), ImageLoader.loadImage("gui/SFX_on.png"), (button) -> {
             System.out.println("toggle SFX");
