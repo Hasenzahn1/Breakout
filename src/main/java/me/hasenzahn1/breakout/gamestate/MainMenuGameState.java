@@ -8,6 +8,9 @@ import java.awt.*;
 public class MainMenuGameState extends GameState{
 
     private Button button;
+    private Button button1;
+    private Button button2;
+    private Button button3;
 
     public MainMenuGameState() {
     }
@@ -19,11 +22,19 @@ public class MainMenuGameState extends GameState{
         });
         button.setResetOnRelease(true); // If the Button resets on Release (Level Select Btn)
         button.setClicked(false); // Set the state of the button (false=image1/true=image2)
+        button1 = new Button(288, 600, ImageLoader.loadImage("gui/SFX_off.png"), ImageLoader.loadImage("gui/SFX_on.png"), (button) -> {
+            System.out.println("toggle SFX");
+        });
+        button1.setClicked(true);
+        button2 = new Button(100, 600, ImageLoader.loadImage("gui/kbm_keyboard.png"), ImageLoader.loadImage("gui/kbm_mouse.png"), (button) ->{
+            System.out.println("toggle ding(mouse)");
+        });
     }
 
     @Override
     public void end() {
         button.remove(); //Remove in end because of listener
+        button1.remove();
     }
 
     @Override
@@ -33,5 +44,6 @@ public class MainMenuGameState extends GameState{
     @Override
     public void render(Graphics g) {
         button.render(g); //Always render the button
+        button1.render(g);
     }
 }
