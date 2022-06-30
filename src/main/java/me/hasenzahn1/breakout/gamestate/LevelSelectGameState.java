@@ -3,6 +3,7 @@ package me.hasenzahn1.breakout.gamestate;
 import java.awt.*;
 
 public class LevelSelectGameState extends GameState{
+
     @Override
     public void start() {
 
