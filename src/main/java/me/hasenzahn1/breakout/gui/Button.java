@@ -3,12 +3,10 @@ package me.hasenzahn1.breakout.gui;
 import me.hasenzahn1.breakout.Breakout;
 import me.hasenzahn1.breakout.display.IDrawable;
 import me.hasenzahn1.breakout.input.IMouseClickable;
-import org.w3c.dom.css.Rect;
 
 import java.awt.*;
 import java.awt.event.MouseEvent;
 import java.awt.image.BufferedImage;
-import java.nio.Buffer;
 import java.util.function.Consumer;
 
 public class Button implements IDrawable, IMouseClickable {
@@ -61,10 +59,6 @@ public class Button implements IDrawable, IMouseClickable {
 
     @Override
     public void onRelease(MouseEvent e) {
-        Point p = e.getPoint();
-        if(p.x < x || p.x > x + width) return;
-        if(p.y < y || p.y > y + height) return;
-
         if(resetOnRelease) clicked = false;
     }
 
