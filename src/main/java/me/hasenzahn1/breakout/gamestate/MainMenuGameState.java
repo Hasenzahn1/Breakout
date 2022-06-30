@@ -14,11 +14,11 @@ public class MainMenuGameState extends GameState{
 
     @Override
     public void start() {
-        button = new Button(10, 10, ImageLoader.loadImage("gui/kbm_mouse.png"), ImageLoader.loadImage("gui/kbm_keyboard.png"), (button) -> {
+        button = new Button(10, 10, 64, 16, ImageLoader.loadImage("gui/levelselection.png"), ImageLoader.loadImage("gui/levelselection_pressed.png"), (button) -> {
             System.out.println(button + " clicked");
         });
-        button.setResetOnRelease(false); // If the Button resets on Release (Level Select Btn)
-        button.setClicked(true); // Set the state of the button (false=image1/true=image2)
+        button.setResetOnRelease(true); // If the Button resets on Release (Level Select Btn)
+        button.setClicked(false); // Set the state of the button (false=image1/true=image2)
     }
 
     @Override
