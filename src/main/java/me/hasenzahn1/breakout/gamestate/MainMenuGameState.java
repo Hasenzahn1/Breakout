@@ -21,12 +21,12 @@ public class MainMenuGameState extends GameState{
 
     @Override
     public void start() {
-        button = new Button(10, 10, ImageLoader.loadImage("gui/levelselection.png"), ImageLoader.loadImage("gui/levelselection_pressed.png"), (button) -> {
+        button = new Button(10, 10, 256, 64, ImageLoader.loadImage("gui/levelselection.png"), ImageLoader.loadImage("gui/levelselection_pressed.png"), (button) -> {
             game.getGameStateManager().setGameState(GameState.LEVEL_SELECT_STATE);
         });
         button.setResetOnRelease(true); // If the Button resets on Release (Level Select Btn)
 
-        button1 = new Button(288, 600, ImageLoader.loadImage("gui/SFX_off.png"), ImageLoader.loadImage("gui/SFX_on.png"), (button) -> {
+        button1 = new Button(300, 600, ImageLoader.loadImage("gui/SFX_off.png"), ImageLoader.loadImage("gui/SFX_on.png"), (button) -> {
             game.getSettings().toggleSfxOn();
         });
         button1.setClicked(game.getSettings().isSfxOn());
@@ -36,7 +36,7 @@ public class MainMenuGameState extends GameState{
         });
         button2.setClicked(game.getSettings().isMouseActive());
 
-        button3 = new Button(420, 600, ImageLoader.loadImage("gui/music_off.png"), ImageLoader.loadImage("gui/music_on.png"), (button) -> {
+        button3 = new Button(50, 600, ImageLoader.loadImage("gui/music_off.png"), ImageLoader.loadImage("gui/music_on.png"), (button) -> {
             game.getSettings().toggleMusicOn();
         });
         button3.setClicked(game.getSettings().isMusicOn());
