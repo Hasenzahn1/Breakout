@@ -6,9 +6,11 @@ import me.hasenzahn1.breakout.gamestate.GameStateManager;
 import me.hasenzahn1.breakout.input.IMouseRegisterable;
 import me.hasenzahn1.breakout.input.MouseListener;
 import me.hasenzahn1.breakout.settings.Settings;
+import me.hasenzahn1.breakout.timings.BreakoutRunnable;
 
 import java.awt.*;
 import java.awt.image.BufferStrategy;
+import java.util.ArrayList;
 
 public class Breakout implements Runnable{
 
@@ -32,6 +34,7 @@ public class Breakout implements Runnable{
     private GameStateManager gameStateManager;
     private MouseListener mouseListener;
     private Settings settings;
+    private ArrayList<BreakoutRunnable> runnables;
 
 
     public Breakout(String title, int width, int height){
@@ -50,6 +53,8 @@ public class Breakout implements Runnable{
         display.getFrame().addMouseListener(mouseListener);
         display.getCanvas().addMouseListener(mouseListener);
 
+        runnables = new ArrayList<>();
+
         settings = new Settings();
 
         gameStateManager = new GameStateManager(this);
@@ -59,6 +64,12 @@ public class Breakout implements Runnable{
     private void tick(){
         deltaTime = (System.currentTimeMillis() - start) / 10.0;
         start = System.currentTimeMillis();
+
+        for (int i = runnables.size() - 1; i >= 0; i--){
+            if(runnables.get(i).tick()){
+                runnables.remove(i);
+            }
+        }
 
         if(gameStateManager.getCurrentGameState() != null) gameStateManager.getCurrentGameState().tick(deltaTime);
    }
@@ -137,6 +148,10 @@ public class Breakout implements Runnable{
         }catch (InterruptedException e){
             e.printStackTrace();
         }
+    }
+
+    public void registerRunnable(BreakoutRunnable runnable){
+        runnables.add(runnable);
     }
 
     public static Breakout getInstance() {

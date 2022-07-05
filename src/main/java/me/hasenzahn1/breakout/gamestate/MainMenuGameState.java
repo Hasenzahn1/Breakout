@@ -5,6 +5,7 @@ import me.hasenzahn1.breakout.gui.Button;
 import me.hasenzahn1.breakout.image.ImageLoader;
 
 import java.awt.*;
+import java.awt.image.BufferedImage;
 
 public class MainMenuGameState extends GameState{
 
@@ -12,31 +13,34 @@ public class MainMenuGameState extends GameState{
     private Button button1;
     private Button button2;
     private Button button3;
-
     private Breakout game;
+    private BufferedImage background;
 
     public MainMenuGameState(Breakout game) {
         this.game = game;
+
+        background = ImageLoader.loadImage("main_menu_background.png");
     }
 
     @Override
     public void start() {
-        button = new Button(10, 10, 256, 64, ImageLoader.loadImage("gui/levelselection.png"), ImageLoader.loadImage("gui/levelselection_pressed.png"), (button) -> {
+        button = new Button(192, 368, 256, 64, ImageLoader.loadImage("gui/levelselection.png"), ImageLoader.loadImage("gui/levelselection_pressed.png"), (button) -> {
             game.getGameStateManager().setGameState(GameState.LEVEL_SELECT_STATE);
+            System.out.println(game.getGameStateManager().getCurrentGameState());
         });
         button.setResetOnRelease(true); // If the Button resets on Release (Level Select Btn)
 
-        button1 = new Button(300, 600, ImageLoader.loadImage("gui/SFX_off.png"), ImageLoader.loadImage("gui/SFX_on.png"), (button) -> {
+        button1 = new Button(288, 600, ImageLoader.loadImage("gui/SFX_off.png"), ImageLoader.loadImage("gui/SFX_on.png"), (button) -> {
             game.getSettings().toggleSfxOn();
         });
         button1.setClicked(game.getSettings().isSfxOn());
 
-        button2 = new Button(100, 600, ImageLoader.loadImage("gui/kbm_keyboard.png"), ImageLoader.loadImage("gui/kbm_mouse.png"), (button) ->{
+        button2 = new Button(112, 600, ImageLoader.loadImage("gui/kbm_keyboard.png"), ImageLoader.loadImage("gui/kbm_mouse.png"), (button) ->{
             game.getSettings().toggleMouseActive();
         });
         button2.setClicked(game.getSettings().isMouseActive());
 
-        button3 = new Button(50, 600, ImageLoader.loadImage("gui/music_off.png"), ImageLoader.loadImage("gui/music_on.png"), (button) -> {
+        button3 = new Button(464, 600, ImageLoader.loadImage("gui/music_off.png"), ImageLoader.loadImage("gui/music_on.png"), (button) ->{
             game.getSettings().toggleMusicOn();
         });
         button3.setClicked(game.getSettings().isMusicOn());
@@ -52,14 +56,20 @@ public class MainMenuGameState extends GameState{
 
     @Override
     public void tick(double deltaTime) {
+        button.tick(deltaTime);
+        button1.tick(deltaTime);
+        button2.tick(deltaTime);
+        button3.tick(deltaTime);
     }
 
     @Override
     public void render(Graphics g) {
+        g.drawImage(background, 0, 0, null);
+
+
         button.render(g); //Always render the button
         button1.render(g);
         button2.render(g);
         button3.render(g);
-
     }
 }
