@@ -16,6 +16,7 @@ public class Button implements IDrawable, IMouseClickable {
     protected Consumer<Button> onClick;
     protected boolean resetOnRelease;
     protected boolean clicked;
+    private boolean shouldCall;
 
     public Button(int x, int y, BufferedImage image, BufferedImage secondImage, Consumer<Button> onClick) {
         this(x, y, image.getWidth(), image.getHeight(), image, secondImage, onClick);
@@ -33,6 +34,7 @@ public class Button implements IDrawable, IMouseClickable {
 
         clicked = false;
         resetOnRelease = false;
+        shouldCall = false;
 
         //Observer :D
         Breakout.getInstance().getMouseRegisterable().register(this);
@@ -40,7 +42,10 @@ public class Button implements IDrawable, IMouseClickable {
 
     @Override
     public void tick(double deltaTime) {
-
+        if(shouldCall){
+            onClick.accept(this);
+            shouldCall = false;
+        }
     }
 
     @Override
@@ -54,7 +59,7 @@ public class Button implements IDrawable, IMouseClickable {
         if(p.x < x || p.x > x + width) return;
         if(p.y < y || p.y > y + height) return;
 
-        onClick.accept(this);
+        shouldCall = true;
     }
 
     @Override

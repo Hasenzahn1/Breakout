@@ -10,14 +10,18 @@ import java.awt.*;
 public class LevelSelectGameState extends GameState{
 
     private Button test;
+    private Map map;
 
 
     @Override
     public void start() {
-      test = new Button(0,0, ImageLoader.loadImage("gui/levelselection.png"),ImageLoader.loadImage("gui/levelselection.png"),(button)->{
-          Map map = MapLoader.loadMap("test.blf");
-          System.out.println(map);
-      });
+        System.out.println("Start");
+        test = new Button(0,0, ImageLoader.loadImage("gui/levelselection.png"),ImageLoader.loadImage("gui/levelselection_pressed.png"),(button)->{
+            map = MapLoader.loadMap("test.blf");
+            System.out.println(map);
+        });
+        test.setResetOnRelease(true);
+        System.out.println(test);
     }
 
     @Override
@@ -27,11 +31,13 @@ public class LevelSelectGameState extends GameState{
 
     @Override
     public void tick(double deltaTime) {
-
+        test.tick(deltaTime);
+        if(map != null) map.tick(deltaTime);
     }
 
     @Override
     public void render(Graphics g) {
         test.render(g);
+        if(map != null) map.render(g);
     }
 }

@@ -4,11 +4,12 @@ import me.hasenzahn1.breakout.map.bricks.Brick;
 import me.hasenzahn1.breakout.map.bricks.PowerupBrick;
 import me.hasenzahn1.breakout.map.bricks.UnbreakableBrick;
 
-import java.io.*;
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.net.URL;
 import java.util.ArrayList;
-import java.util.Enumeration;
-import java.util.Iterator;
 
 public class MapLoader {
 
