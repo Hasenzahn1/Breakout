@@ -21,6 +21,10 @@ public class GameStateManager {
         currentGameState.start();
     }
 
+    public GameState getGameState(int gameState){
+        return gameStates[gameState];
+    }
+
     public GameState getCurrentGameState() {
         return currentGameState;
     }
