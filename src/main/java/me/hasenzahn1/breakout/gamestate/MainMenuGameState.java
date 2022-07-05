@@ -26,6 +26,7 @@ public class MainMenuGameState extends GameState{
     public void start() {
         button = new Button(192, 368, 256, 64, ImageLoader.loadImage("gui/levelselection.png"), ImageLoader.loadImage("gui/levelselection_pressed.png"), (button) -> {
             game.getGameStateManager().setGameState(GameState.LEVEL_SELECT_STATE);
+            System.out.println(game.getGameStateManager().getCurrentGameState());
         });
         button.setResetOnRelease(true); // If the Button resets on Release (Level Select Btn)
 
@@ -55,6 +56,10 @@ public class MainMenuGameState extends GameState{
 
     @Override
     public void tick(double deltaTime) {
+        button.tick(deltaTime);
+        button1.tick(deltaTime);
+        button2.tick(deltaTime);
+        button3.tick(deltaTime);
     }
 
     @Override
