@@ -6,7 +6,6 @@ public class LevelSelectGameState extends GameState{
 
     @Override
     public void start() {
-
     }
 
     @Override
