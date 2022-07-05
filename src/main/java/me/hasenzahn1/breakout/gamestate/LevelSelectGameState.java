@@ -6,38 +6,44 @@ import me.hasenzahn1.breakout.map.Map;
 import me.hasenzahn1.breakout.map.MapLoader;
 
 import java.awt.*;
+import java.util.ArrayList;
 
 public class LevelSelectGameState extends GameState{
 
-    private Button test;
-    private Map map;
+    ArrayList<Button> buttons;
 
 
     @Override
     public void start() {
-        System.out.println("Start");
-        test = new Button(0,0, ImageLoader.loadImage("gui/levelselection.png"),ImageLoader.loadImage("gui/levelselection_pressed.png"),(button)->{
-            map = MapLoader.loadMap("test.blf");
-            System.out.println(map);
-        });
-        test.setResetOnRelease(true);
-        System.out.println(test);
+        buttons = new ArrayList<>();
+        for(int i = 0; i < MapLoader.getMaps().size(); i++){
+            Button button = new Button((i % 5) * 46 + (i % 5) * 53 + 53, 249 + (i / 5) * 64 + (i /5) * 53, ImageLoader.loadImage("gui/mapselect/map_" + (i + 1) + ".png"), ImageLoader.loadImage("gui/mapselect/map_" + (i + 1) + "_pressed.png"), (btn) -> {
+                System.out.println(buttons.indexOf(btn));
+                //*grillenzirpen*
+            });
+            button.setResetOnRelease(true);
+            buttons.add(button);
+        }
     }
 
     @Override
     public void end() {
-        test.remove();
+        for(int i = 0; i < buttons.size(); i++){
+            buttons.get(i).remove();
+        }
     }
 
     @Override
     public void tick(double deltaTime) {
-        test.tick(deltaTime);
-        if(map != null) map.tick(deltaTime);
+        for(int i = 0; i < buttons.size(); i++){
+            buttons.get(i).tick(deltaTime);
+        }
     }
 
     @Override
     public void render(Graphics g) {
-        test.render(g);
-        if(map != null) map.render(g);
+        for(int i = 0; i < buttons.size(); i++){
+            buttons.get(i).render(g);
+        }
     }
 }
