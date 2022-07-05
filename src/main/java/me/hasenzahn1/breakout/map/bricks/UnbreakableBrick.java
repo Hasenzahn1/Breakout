@@ -4,6 +4,10 @@ import java.awt.*;
 
 public class UnbreakableBrick extends Brick{
 
+    public UnbreakableBrick(int nHealth, int imageData) {
+        super(nHealth, imageData);
+    }
+
     @Override
     public void render(Graphics g) {
         super.render(g);

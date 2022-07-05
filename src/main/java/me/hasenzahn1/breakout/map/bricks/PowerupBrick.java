@@ -4,6 +4,10 @@ import java.awt.*;
 
 public class PowerupBrick extends Brick{
 
+    public PowerupBrick(int nHealth, int imageData) {
+        super(nHealth, imageData);
+    }
+
     @Override
     public void render(Graphics g) {
         super.render(g);

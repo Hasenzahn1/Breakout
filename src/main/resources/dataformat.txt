@@ -1,0 +1,10 @@
+16x Farben => 0xFFFF
+1x Unbreakable => 0xU
+1x Powerup => 0xP
+2x Health => 0xHH
+
+Dataformat => 0xFFFFUPHH
+	   => 8 Bits / 1 byte
+
+Problem: Was ist wenn es kein Tile gibt?
+Lösung: Ein Tile ist Luft wenn Unbreakable und Powerup vorhanden ist

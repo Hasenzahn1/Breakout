@@ -13,6 +13,11 @@ public class Brick implements IDrawable {
     private BufferedImage image;
 
 
+    public Brick(int nHealth,int imageData){
+        health = nHealth;
+
+    }
+
     @Override
     public void tick(double deltaTime) {
 

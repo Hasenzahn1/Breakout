@@ -13,7 +13,7 @@ public class Map implements IDrawable {
     private final Brick[][] bricks;
 
     public Map(){
-        bricks = new Brick[ROW][COLLUMS];
+        bricks = new Brick[COLLUMS][ROW];
     }
 
     public void setBrick(int x, int y, Brick brick){
