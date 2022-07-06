@@ -1,5 +1,6 @@
 package me.hasenzahn1.breakout.gamestate;
 
+import me.hasenzahn1.breakout.Breakout;
 import me.hasenzahn1.breakout.gui.Button;
 import me.hasenzahn1.breakout.image.ImageLoader;
 import me.hasenzahn1.breakout.map.Map;
@@ -12,13 +13,18 @@ public class LevelSelectGameState extends GameState{
 
     ArrayList<Button> buttons;
 
-
     @Override
     public void start() {
+        System.out.println(MapLoader.getMaps());
         buttons = new ArrayList<>();
         for(int i = 0; i < MapLoader.getMaps().size(); i++){
-            Button button = new Button((i % 5) * 46 + (i % 5) * 53 + 53, 249 + (i / 5) * 64 + (i /5) * 53, ImageLoader.loadImage("gui/mapselect/map_" + (i + 1) + ".png"), ImageLoader.loadImage("gui/mapselect/map_" + (i + 1) + "_pressed.png"), (btn) -> {
-                System.out.println(buttons.indexOf(btn));
+            System.out.println((i % 5) * 64 + (i % 5) * 53);
+            Button button = new Button((i % 5) * 64 + (i % 5) * 53 + 63, 449 + (i / 5) * 64 + (i /5) * 53, ImageLoader.loadImage("gui/mapselect/map_" + (i + 1) + ".png"), ImageLoader.loadImage("gui/mapselect/map_" + (i + 1) + "_pressed.png"), (btn) -> {
+                System.out.println("map_" + buttons.indexOf(btn) + ".blf");
+                Map map = MapLoader.loadMap("map_" + buttons.indexOf(btn) + ".blf");
+                IngameState state = (IngameState) Breakout.getInstance().getGameStateManager().getGameState(GameState.INGAME_STATE);
+                state.setMap(map);
+                Breakout.getInstance().getGameStateManager().setGameState(GameState.INGAME_STATE);
                 //*grillenzirpen*
             });
             button.setResetOnRelease(true);
