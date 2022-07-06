@@ -8,7 +8,6 @@ import java.awt.image.BufferedImage;
 
 public class Brick implements IDrawable {
 
-    public static final BufferedImage DEFUALT = ImageLoader.loadImage("game/bricks/brick_1.png");
     public static final BufferedImage[] BRICK_IMAGES = loadAllBrickImages();
 
     private static BufferedImage[] loadAllBrickImages() {

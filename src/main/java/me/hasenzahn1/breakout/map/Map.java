@@ -18,8 +18,8 @@ public class Map implements IDrawable {
 
     public void setBrick(int x, int y, Brick brick){
         if(brick == null) return;
-        brick.setX(MAP_X + x * Brick.DEFUALT.getWidth() + x);
-        brick.setY(MAP_Y + y * Brick.DEFUALT.getHeight() + y);
+        brick.setX(MAP_X + x * Brick.BRICK_IMAGES[0].getWidth() + x);
+        brick.setY(MAP_Y + y * Brick.BRICK_IMAGES[0].getHeight() + y);
         bricks.add(brick);
     }
 
