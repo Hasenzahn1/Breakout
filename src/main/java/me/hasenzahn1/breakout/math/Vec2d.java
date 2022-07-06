@@ -21,6 +21,12 @@ public class Vec2d{
         n2 *= x;
         return this;
     }
+
+    public Vec2d multiply(double a, double b){
+        n1 *= a;
+        n2 *= b;
+        return this;
+    }
     
     public Vec2d add(double a, double b){
         n1 += a;
