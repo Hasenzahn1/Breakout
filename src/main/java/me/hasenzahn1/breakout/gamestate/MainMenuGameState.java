@@ -13,8 +13,8 @@ public class MainMenuGameState extends GameState{
     private Button button1;
     private Button button2;
     private Button button3;
-    private Breakout game;
-    private BufferedImage background;
+    private final Breakout game;
+    private final BufferedImage background;
 
     public MainMenuGameState(Breakout game) {
         this.game = game;
@@ -26,7 +26,6 @@ public class MainMenuGameState extends GameState{
     public void start() {
         button = new Button(201, 368, 256, 64, ImageLoader.loadImage("gui/levelselection.png"), ImageLoader.loadImage("gui/levelselection_pressed.png"), (button) -> {
             game.getGameStateManager().setGameState(GameState.LEVEL_SELECT_STATE);
-            System.out.println(game.getGameStateManager().getCurrentGameState());
         });
         button.setResetOnRelease(true); // If the Button resets on Release (Level Select Btn)
 
@@ -65,7 +64,6 @@ public class MainMenuGameState extends GameState{
     @Override
     public void render(Graphics g) {
         g.drawImage(background, 0, 0, Breakout.getInstance().getWidth(), Breakout.getInstance().getHeight(), null);
-
 
         button.render(g); //Always render the button
         button1.render(g);

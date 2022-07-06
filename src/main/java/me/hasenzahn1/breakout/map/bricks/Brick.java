@@ -1,12 +1,15 @@
 package me.hasenzahn1.breakout.map.bricks;
 
 import me.hasenzahn1.breakout.display.IDrawable;
+import me.hasenzahn1.breakout.game.Ball;
+import me.hasenzahn1.breakout.game.ICollidable;
 import me.hasenzahn1.breakout.image.ImageLoader;
+import me.hasenzahn1.breakout.math.BoundingBox;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
 
-public class Brick implements IDrawable {
+public class Brick implements IDrawable, ICollidable {
 
     public static final BufferedImage[] BRICK_IMAGES = loadAllBrickImages();
 
@@ -66,5 +69,15 @@ public class Brick implements IDrawable {
 
     public boolean isBroken(){
         return health < 0;        
+    }
+
+    @Override
+    public BoundingBox getCollider() {
+        return null;
+    }
+
+    @Override
+    public void onCollide(Ball ball) {
+
     }
 }

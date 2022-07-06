@@ -15,12 +15,9 @@ public class LevelSelectGameState extends GameState{
 
     @Override
     public void start() {
-        System.out.println(MapLoader.getMaps());
         buttons = new ArrayList<>();
         for(int i = 0; i < MapLoader.getMaps().size(); i++){
-            System.out.println((i % 5) * 64 + (i % 5) * 53);
             Button button = new Button((i % 5) * 64 + (i % 5) * 53 + 63, 449 + (i / 5) * 64 + (i /5) * 53, ImageLoader.loadImage("gui/mapselect/map_" + (i + 1) + ".png"), ImageLoader.loadImage("gui/mapselect/map_" + (i + 1) + "_pressed.png"), (btn) -> {
-                System.out.println("map_" + buttons.indexOf(btn) + ".blf");
                 Map map = MapLoader.loadMap("map_" + buttons.indexOf(btn) + ".blf");
                 IngameState state = (IngameState) Breakout.getInstance().getGameStateManager().getGameState(GameState.INGAME_STATE);
                 state.setMap(map);

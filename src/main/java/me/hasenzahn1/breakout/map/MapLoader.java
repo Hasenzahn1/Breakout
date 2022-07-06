@@ -18,7 +18,7 @@ public class MapLoader {
         URL folderURL = MapLoader.class.getClassLoader().getResource("maps");
         String path = folderURL.getFile().replace("%20"," ");
         File folder = new File(path);
-        File[] mapFiles = folder.listFiles((dir,name)-> name.endsWith(".blf"));
+        File[] mapFiles = folder.listFiles((dir,name) -> name.endsWith(".blf"));
         for(int i = 0; i < mapFiles.length; i++){
             maps.add(mapFiles[i].getName());
         }
@@ -37,7 +37,6 @@ public class MapLoader {
             for(int x = 0; x < brickData.length; x++) {
                 Brick brick = MapLoader.createBrick(brickData[x]);
                 map.setBrick(x,y,brick);
-                System.out.println(brick);
             }
             y++;
         }
