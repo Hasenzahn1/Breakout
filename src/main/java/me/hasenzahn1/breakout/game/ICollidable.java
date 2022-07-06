@@ -5,6 +5,6 @@ import me.hasenzahn1.breakout.math.BoundingBox;
 public interface ICollidable {
 
     BoundingBox getCollider();
-    void onCollide(Ball ball);
+    void onCollide(ICollidable ball);
 
 }

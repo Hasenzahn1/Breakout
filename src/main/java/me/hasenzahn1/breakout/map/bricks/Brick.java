@@ -77,7 +77,7 @@ public class Brick implements IDrawable, ICollidable {
     }
 
     @Override
-    public void onCollide(Ball ball) {
+    public void onCollide(ICollidable ball) {
 
     }
 }

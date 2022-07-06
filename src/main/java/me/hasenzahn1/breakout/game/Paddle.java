@@ -39,7 +39,7 @@ public class Paddle implements ICollidable, IDrawable, IMouseMovable, IKeyClicka
     }
 
     @Override
-    public void onCollide(Ball ball) {
+    public void onCollide(ICollidable ball) {
 
     }
 

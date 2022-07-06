@@ -14,8 +14,8 @@ public class IngameState extends GameState{
 
     @Override
     public void start() {
-        paddle = new Paddle(60, 730);
-        ball = new Ball(321, 700);
+        paddle = new Paddle(60, 630);
+        ball = new Ball(321, 600);
     }
 
     @Override
@@ -27,6 +27,13 @@ public class IngameState extends GameState{
     @Override
     public void tick(double deltaTime) {
         if(map != null) map.tick(deltaTime);
+
+        //Collision
+        if(paddle.getCollider().intersects(ball.getCollider())){
+            //Ball collides with paddle
+            ball.onCollide(paddle);
+        }
+
         paddle.tick(deltaTime);
         ball.tick(deltaTime);
     }

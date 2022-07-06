@@ -54,4 +54,12 @@ public class BoundingBox {
     public void setHeight(int height) {
         this.height = height;
     }
+
+    public int getMaxX(){
+        return x + width;
+    }
+
+    public int getMaxY(){
+        return y + height;
+    }
 }

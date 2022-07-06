@@ -24,7 +24,7 @@ public class Ball implements IDrawable, ICollidable {
         y = newY;
         direction = new Vec2d(Math.random()-0.5,Math.random());
         direction.normalize();
-        speed = 30;
+        speed = 5;
         image = ImageLoader.loadImage("game/ball.png");
         windowHeight = Breakout.getInstance().getHeight();
         windowWidth = Breakout.getInstance().getWidth();
@@ -62,7 +62,14 @@ public class Ball implements IDrawable, ICollidable {
     }
 
     @Override
-    public void onCollide(Ball ball) {
-
+    public void onCollide(ICollidable object) {
+        BoundingBox objectBoundingBox = object.getCollider();
+        if(y < objectBoundingBox.getY()){
+            direction.multiply(1, -1);
+            y = objectBoundingBox.getY() - image.getHeight();
+        }else{
+            direction.multiply(1, -1);
+            y = objectBoundingBox.getMaxY();
+        }
     }
 }
