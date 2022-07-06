@@ -28,7 +28,10 @@ public class Map implements IDrawable {
     public void tick(double deltaTime) {
         for(Brick brick : bricks){
             brick.tick(deltaTime);
+
         }
+
+
     }
 
     @Override
@@ -36,5 +39,9 @@ public class Map implements IDrawable {
         for(Brick brick : bricks){
             brick.render(g);
         }
+    }
+
+    public ArrayList<Brick> getBricks() {
+        return bricks;
     }
 }

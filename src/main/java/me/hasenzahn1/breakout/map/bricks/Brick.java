@@ -77,6 +77,7 @@ public class Brick implements IDrawable, ICollidable {
 
     @Override
     public void onCollide(ICollidable ball) {
-
+        hit(1);
+        System.out.println(health);
     }
 }

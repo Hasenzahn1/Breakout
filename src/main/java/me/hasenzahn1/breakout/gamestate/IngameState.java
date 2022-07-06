@@ -3,6 +3,7 @@ package me.hasenzahn1.breakout.gamestate;
 import me.hasenzahn1.breakout.game.Ball;
 import me.hasenzahn1.breakout.game.Paddle;
 import me.hasenzahn1.breakout.map.Map;
+import me.hasenzahn1.breakout.map.bricks.Brick;
 
 import java.awt.*;
 
@@ -32,7 +33,17 @@ public class IngameState extends GameState{
         if(paddle.getCollider().intersects(ball.getCollider())){
             //Ball collides with paddle
             ball.onCollide(paddle);
+
         }
+
+        for(Brick brick : map.getBricks()) {
+
+            if(brick.getCollider().intersects(ball.getCollider())) {
+                ball.onCollide(brick);
+                brick.onCollide(ball);
+            }
+        }
+
 
         paddle.tick(deltaTime);
         ball.tick(deltaTime);

@@ -70,7 +70,7 @@ public class Breakout implements Runnable{
         settings = new Settings();
 
         gameStateManager = new GameStateManager(this);
-        gameStateManager.setGameState(GameState.INGAME_STATE);
+        gameStateManager.setGameState(GameState.LEVEL_SELECT_STATE);
     }
 
     private void tick(){
