@@ -1,4 +1,4 @@
-package me.hasenzahn1.breakout.input;
+package me.hasenzahn1.breakout.input.click;
 
 import java.awt.event.MouseEvent;
 import java.util.ArrayList;

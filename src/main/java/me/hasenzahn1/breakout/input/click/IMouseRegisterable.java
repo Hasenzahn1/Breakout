@@ -1,4 +1,4 @@
-package me.hasenzahn1.breakout.input;
+package me.hasenzahn1.breakout.input.click;
 
 public interface IMouseRegisterable {
 

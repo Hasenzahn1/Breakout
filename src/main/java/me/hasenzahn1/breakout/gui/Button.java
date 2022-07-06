@@ -2,7 +2,7 @@ package me.hasenzahn1.breakout.gui;
 
 import me.hasenzahn1.breakout.Breakout;
 import me.hasenzahn1.breakout.display.IDrawable;
-import me.hasenzahn1.breakout.input.IMouseClickable;
+import me.hasenzahn1.breakout.input.click.IMouseClickable;
 
 import java.awt.*;
 import java.awt.event.MouseEvent;

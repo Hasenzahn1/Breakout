@@ -3,8 +3,12 @@ package me.hasenzahn1.breakout;
 import me.hasenzahn1.breakout.display.Display;
 import me.hasenzahn1.breakout.gamestate.GameState;
 import me.hasenzahn1.breakout.gamestate.GameStateManager;
-import me.hasenzahn1.breakout.input.IMouseRegisterable;
-import me.hasenzahn1.breakout.input.MouseListener;
+import me.hasenzahn1.breakout.input.click.IMouseRegisterable;
+import me.hasenzahn1.breakout.input.click.MouseListener;
+import me.hasenzahn1.breakout.input.keyboard.IKeyRegisterable;
+import me.hasenzahn1.breakout.input.keyboard.KeyboardListener;
+import me.hasenzahn1.breakout.input.motion.IMouseMotionRegisterable;
+import me.hasenzahn1.breakout.input.motion.MouseMoveListener;
 import me.hasenzahn1.breakout.settings.Settings;
 import me.hasenzahn1.breakout.timings.BreakoutRunnable;
 
@@ -33,6 +37,8 @@ public class Breakout implements Runnable{
     //GameStuff
     private GameStateManager gameStateManager;
     private MouseListener mouseListener;
+    private MouseMoveListener mouseMoveListener;
+    private KeyboardListener keyboardListener;
     private Settings settings;
     private ArrayList<BreakoutRunnable> runnables;
 
@@ -50,8 +56,14 @@ public class Breakout implements Runnable{
         start = System.currentTimeMillis();
 
         mouseListener = new MouseListener();
+        mouseMoveListener = new MouseMoveListener();
+        keyboardListener = new KeyboardListener();
         display.getFrame().addMouseListener(mouseListener);
         display.getCanvas().addMouseListener(mouseListener);
+        display.getFrame().addMouseMotionListener(mouseMoveListener);
+        display.getCanvas().addMouseMotionListener(mouseMoveListener);
+        display.getFrame().addKeyListener(keyboardListener);
+        display.getCanvas().addKeyListener(keyboardListener);
 
         runnables = new ArrayList<>();
 
@@ -192,5 +204,13 @@ public class Breakout implements Runnable{
 
     public void unregisterRunnable(BreakoutRunnable breakoutRunnable) {
         runnables.remove(breakoutRunnable);
+    }
+
+    public IMouseMotionRegisterable getMouseMotionRegisterable(){
+        return mouseMoveListener;
+    }
+
+    public IKeyRegisterable getKeyRegisterbable(){
+        return keyboardListener;
     }
 }
