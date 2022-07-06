@@ -18,9 +18,5 @@ public class PowerupBrick extends Brick{
         super.tick(deltaTime);
     }
 
-    public void hit(){
-        health = health - 1;
-    }
 
-    
 }

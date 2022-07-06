@@ -22,4 +22,7 @@ public class UnbreakableBrick extends Brick{
     public void tick(double deltaTime) {
         super.tick(deltaTime);
     }
+
+    @Override
+    public void hit(int healthAmount){}
 }
