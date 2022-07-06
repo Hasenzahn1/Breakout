@@ -60,4 +60,12 @@ public class Brick implements IDrawable {
                 ", image=" + debug +
                 '}';
     }
+
+    public void hit(int healthAmount){
+        health -= healthAmount;
+    }
+
+    public boolean isBroken(){
+        return health < 0;        
+    }
 }
