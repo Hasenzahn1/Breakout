@@ -10,6 +10,14 @@ public class Vec2d{
         this.n2 = n2;
     }
 
+    public double getN1() {
+        return n1;
+    }
+
+    public double getN2() {
+        return n2;
+    }
+
     public Vec2d normalize(){
         double length = Math.sqrt((n1*n1)+(n2*n2));
         n1 = n1/length;
