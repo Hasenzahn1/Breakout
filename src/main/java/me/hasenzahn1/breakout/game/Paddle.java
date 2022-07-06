@@ -84,6 +84,11 @@ public class Paddle implements ICollidable, IDrawable, IMouseMovable, IKeyClicka
         if(e.getKeyCode() == KeyEvent.VK_D || e.getKeyCode() == KeyEvent.VK_RIGHT){
             rightClicked = true;
         }
+
+        if(e.getKeyCode() == KeyEvent.VK_SPACE || e.getKeyCode() == KeyEvent.VK_ENTER){
+            speed +=5;
+        }
+
     }
 
     @Override
@@ -94,6 +99,11 @@ public class Paddle implements ICollidable, IDrawable, IMouseMovable, IKeyClicka
         if(e.getKeyCode() == KeyEvent.VK_D || e.getKeyCode() == KeyEvent.VK_RIGHT){
             rightClicked = false;
         }
+
+        if(e.getKeyCode() == KeyEvent.VK_SPACE || e.getKeyCode() == KeyEvent.VK_ENTER){
+            speed -=5;
+        }
+
     }
 }
 
