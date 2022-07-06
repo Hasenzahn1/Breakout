@@ -49,4 +49,12 @@ public class Vec2d{
     public void setN2(double n2) {
         this.n2 = n2;
     }
+
+    @Override
+    public String toString() {
+        return "Vec2d{" +
+                "n1=" + n1 +
+                ", n2=" + n2 +
+                '}';
+    }
 }

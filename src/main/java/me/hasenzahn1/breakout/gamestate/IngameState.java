@@ -25,14 +25,14 @@ public class IngameState extends GameState{
 
     @Override
     public void tick(double deltaTime) {
-        if(map != null) map.tick(deltaTime);
         ball.tick(deltaTime);
+        if(map != null) map.tick(deltaTime);
     }
 
     @Override
     public void render(Graphics g) {
-        if(map != null) map.render(g);
         ball.render(g);
+        if(map != null) map.render(g);
     }
 
     public void setMap(Map map) {
