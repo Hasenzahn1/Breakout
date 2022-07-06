@@ -73,7 +73,7 @@ public class Brick implements IDrawable, ICollidable {
 
     @Override
     public BoundingBox getCollider() {
-        return null;
+        return new BoundingBox(x, y, image.getWidth(), image.getHeight());
     }
 
     @Override

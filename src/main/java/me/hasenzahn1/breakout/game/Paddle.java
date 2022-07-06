@@ -13,7 +13,7 @@ public class Paddle implements ICollidable{
 
     @Override
     public BoundingBox getCollider() {
-        return null;
+        return new BoundingBox((int) x, (int) y, width, image.getHeight());
     }
 
     @Override
