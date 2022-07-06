@@ -189,4 +189,8 @@ public class Breakout implements Runnable{
     public GameStateManager getGameStateManager() {
         return gameStateManager;
     }
+
+    public void unregisterRunnable(BreakoutRunnable breakoutRunnable) {
+        runnables.remove(breakoutRunnable);
+    }
 }

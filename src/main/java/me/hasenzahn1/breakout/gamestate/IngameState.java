@@ -12,15 +12,16 @@ public class IngameState extends GameState{
 
     @Override
     public void start() {
-        final long start = System.currentTimeMillis();
+        final long[] start = {System.currentTimeMillis()};
         new BreakoutRunnable(){
 
             @Override
             public void run() {
                 long stop = System.currentTimeMillis();
-                System.out.println("Executed after: " + (stop - start) / 1000.0 + " seconds");
+                System.out.println("Executed after: " + (stop - start[0]) / 1000.0 + " seconds");
+                start[0] = stop;
             }
-        }.runTaskLater(Breakout.getInstance(), 10);
+        }.runTaskTimer(Breakout.getInstance(), 2);
     }
 
     @Override
