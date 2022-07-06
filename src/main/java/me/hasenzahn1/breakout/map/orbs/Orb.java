@@ -8,7 +8,7 @@ import java.awt.image.BufferedImage;
 
 public abstract class Orb implements IDrawable{
 
-    public abstract void onHit(/*ballIrgendEinNamenAberEgal (war Omid don't judge me)*/);
+    public abstract void onHit(/*ball*/);
     
     @Override
     public void tick(double deltaTime) {
