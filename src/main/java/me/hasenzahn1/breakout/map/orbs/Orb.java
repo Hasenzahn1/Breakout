@@ -1,4 +1,4 @@
-package me.hasenzahn1.breakout.map.bricks;
+package me.hasenzahn1.breakout.map.orbs;
 
 import me.hasenzahn1.breakout.display.IDrawable;
 import me.hasenzahn1.breakout.image.ImageLoader;
@@ -17,6 +17,6 @@ public abstract class Orb implements IDrawable{
 
     @Override
     public void render(Graphics g) {
-        g.drawImage(image, x, y, null);
+        
     }
 }
