@@ -26,7 +26,7 @@ public class Paddle implements ICollidable, IDrawable, IMouseMovable, IKeyClicka
         this.x = x;
         this.y = y;
         this.image = ImageLoader.loadImage("game/paddle.png");
-        this.width = image.getWidth();
+        this.width = (int) (image.getWidth() * 1.5);
         speed = 7;
 
         Breakout.getInstance().getMouseMotionRegisterable().register(this);
@@ -35,7 +35,7 @@ public class Paddle implements ICollidable, IDrawable, IMouseMovable, IKeyClicka
 
     @Override
     public BoundingBox getCollider() {
-        return new BoundingBox((int) x, (int) y, width, image.getHeight());
+        return new BoundingBox((int) x, y, width, 17);
     }
 
     @Override
@@ -61,7 +61,7 @@ public class Paddle implements ICollidable, IDrawable, IMouseMovable, IKeyClicka
 
     @Override
     public void render(Graphics g) {
-        g.drawImage(image, (int) x, (int) y, width, image.getHeight(),  null);
+        g.drawImage(image, (int) x, y, width, 17,  null);
     }
 
     @Override

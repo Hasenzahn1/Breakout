@@ -64,12 +64,11 @@ public class Ball implements IDrawable, ICollidable {
     @Override
     public void onCollide(ICollidable object) {
         BoundingBox objectBoundingBox = object.getCollider();
+        direction.multiply(1, -1);
         if(y < objectBoundingBox.getY()){
-            direction.multiply(1, -1);
-            y = objectBoundingBox.getY() - image.getHeight();
+            y = objectBoundingBox.getY() - image.getHeight() - 1;
         }else{
-            direction.multiply(1, -1);
-            y = objectBoundingBox.getMaxY();
+            y = objectBoundingBox.getMaxY() + 1;
         }
     }
 }
