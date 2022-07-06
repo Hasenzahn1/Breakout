@@ -35,10 +35,28 @@ public class Vec2d{
         n2 *= b;
         return this;
     }
-    
+
     public Vec2d add(double a, double b){
         n1 += a;
         n2 += b;
+        return this;
+    }
+
+    public Vec2d add(Vec2d vec){
+        n1 += vec.getN1();
+        n2 += vec.getN2();
+        return this;
+    }
+
+    public Vec2d subtract(Vec2d vec){
+        n1 -= vec.getN1();
+        n2 -= vec.getN2();
+        return this;
+    }
+
+    public Vec2d subtract(double a, double b){
+        n1 -= a;
+        n2 -= b;
         return this;
     }
     

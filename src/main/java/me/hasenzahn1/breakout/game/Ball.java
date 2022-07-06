@@ -14,8 +14,7 @@ public class Ball implements IDrawable, ICollidable {
     private float x, y;
     Vec2d direction;
     private double speed;
-
-    private int windowWidth, windowHeight;
+    private int width;
 
     private BufferedImage image;
 
@@ -26,8 +25,7 @@ public class Ball implements IDrawable, ICollidable {
         direction.normalize();
         speed = 5;
         image = ImageLoader.loadImage("game/ball.png");
-        windowHeight = Breakout.getInstance().getHeight();
-        windowWidth = Breakout.getInstance().getWidth();
+        width = 13;
         //System.out.println(windowHeight + "<- Height , Width -> " + windowWidth);
         //System.out.println(direction);
     }
@@ -37,33 +35,40 @@ public class Ball implements IDrawable, ICollidable {
         x += direction.getN1() * deltaTime * speed;
         y += direction.getN2() * deltaTime * speed;
 
-        if(x < 0 || x > Breakout.getInstance().getWidth()-image.getWidth()){
+        if(x < 0 || x > Breakout.getInstance().getWidth() - width){
             direction.multiply( -1, 1);
             if(x < 0) x=0;
-            else x = Breakout.getInstance().getWidth() - image.getWidth();
+            else x = Breakout.getInstance().getWidth() - width;
         }
-        if(y < 0 || y > Breakout.getInstance().getHeight()-image.getWidth()){
+        if(y < 0 || y > Breakout.getInstance().getHeight()-width){
             direction.multiply(1,-1);
             if(y < 0) y=0;
-            else y = Breakout.getInstance().getHeight() - image.getHeight();
+            else y = Breakout.getInstance().getHeight() - width;
         }
 
     }
 
     @Override
     public void render(Graphics g) {
-        g.drawImage(image, (int)x, (int)y, null);
+        g.drawImage(image, (int)x, (int)y, width, width, null);
         //System.out.println(image + "   y:" + y + "   x:" + x);
     }
 
     @Override
     public BoundingBox getCollider() {
-        return new BoundingBox((int) x, (int) y, image.getWidth(), image.getHeight());
+        return new BoundingBox((int) x, (int) y, width, width);
     }
 
     @Override
     public void onCollide(ICollidable object) {
         BoundingBox objectBoundingBox = object.getCollider();
+        /*Vec2d vec = new Vec2d(objectBoundingBox.getX() + objectBoundingBox.getWidth() / 2, objectBoundingBox.getY() + objectBoundingBox.getHeight() / 2);
+        vec.subtract(new Vec2d(x + width / 2, y + width / 2));
+
+         */
+
+
+
         direction.multiply(1, -1);
         if(y < objectBoundingBox.getY()){
             y = objectBoundingBox.getY() - image.getHeight() - 1;
