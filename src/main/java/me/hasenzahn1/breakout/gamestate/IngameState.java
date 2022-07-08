@@ -59,4 +59,8 @@ public class IngameState extends GameState{
     public void setMap(Map map) {
         this.map = map;
     }
+
+    public Ball getBall() {
+        return ball;
+    }
 }
