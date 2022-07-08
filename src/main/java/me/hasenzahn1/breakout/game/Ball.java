@@ -26,8 +26,6 @@ public class Ball implements IDrawable, ICollidable {
         speed = 5;
         image = ImageLoader.loadImage("game/ball.png");
         width = 13;
-        //System.out.println(windowHeight + "<- Height , Width -> " + windowWidth);
-        //System.out.println(direction);
     }
 
     @Override
@@ -67,13 +65,27 @@ public class Ball implements IDrawable, ICollidable {
 
          */
 
-
-
-        direction.multiply(1, -1);
-        if(y < objectBoundingBox.getY()){
-            y = objectBoundingBox.getY() - image.getHeight() - 1;
-        }else{
-            y = objectBoundingBox.getMaxY() + 1;
+        if(x < objectBoundingBox.getX() || x > objectBoundingBox.getMaxX() - width){
+            direction.multiply( -1, 1);
+            if(x < objectBoundingBox.getX()) x = objectBoundingBox.getX();
+            else x = objectBoundingBox.getMaxX() - width;
         }
+        if(y < objectBoundingBox.getY() || y > objectBoundingBox.getMaxY()-width){
+            direction.multiply(1,-1);
+            if(y < objectBoundingBox.getY()) y = objectBoundingBox.getY();
+            else y = objectBoundingBox.getMaxY() - width;
+        }
+    }
+
+    public double getSpeed() {
+        return speed;
+    }
+
+    public void setWidth(int width) {
+        this.width = width;
+    }
+
+    public void setSpeed(double speed) {
+        this.speed = speed;
     }
 }
