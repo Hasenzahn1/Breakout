@@ -65,14 +65,14 @@ public class Ball implements IDrawable, ICollidable {
 
          */
 
-        if(x < objectBoundingBox.getX() || x > objectBoundingBox.getMaxX() - width){
+        if(x > objectBoundingBox.getX() || x > objectBoundingBox.getMaxX() - width){
             direction.multiply( -1, 1);
-            if(x < objectBoundingBox.getX()) x = objectBoundingBox.getX();
+            if(x > objectBoundingBox.getX()) x = objectBoundingBox.getX();
             else x = objectBoundingBox.getMaxX() - width;
         }
-        if(y < objectBoundingBox.getY() || y > objectBoundingBox.getMaxY()-width){
+        if(y > objectBoundingBox.getY() || y > objectBoundingBox.getMaxY()-width){
             direction.multiply(1,-1);
-            if(y < objectBoundingBox.getY()) y = objectBoundingBox.getY();
+            if(y > objectBoundingBox.getY()) y = objectBoundingBox.getY();
             else y = objectBoundingBox.getMaxY() - width;
         }
     }
