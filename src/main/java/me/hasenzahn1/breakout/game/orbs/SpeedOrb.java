@@ -6,23 +6,34 @@ import me.hasenzahn1.breakout.game.Ball;
 import me.hasenzahn1.breakout.game.ICollidable;
 import me.hasenzahn1.breakout.gamestate.GameState;
 import me.hasenzahn1.breakout.gamestate.IngameState;
+import me.hasenzahn1.breakout.image.ImageLoader;
 import me.hasenzahn1.breakout.math.BoundingBox;
 import me.hasenzahn1.breakout.timings.BreakoutRunnable;
 
+import java.awt.image.BufferedImage;
+
 public class SpeedOrb extends Orb{
+
+
+    public SpeedOrb(int x, int y) {
+        super(x, y, ImageLoader.loadImage("game/orb_doubleshot.png"));
+    }
 
     @Override
     public void onCollide(ICollidable object) {
         IngameState ingameState = (IngameState) Breakout.getInstance().getGameStateManager().getGameState(GameState.INGAME_STATE);
-        Ball ball = ingameState.getBall();
-        ball.setSpeed(ball.getSpeed()*2);
-
+        for(Ball ball : ingameState.getBalls()) {
+            ball.setSpeed(ball.getSpeed() * 2);
+        }
         BreakoutRunnable timer = new BreakoutRunnable() {
             @Override
             public void run() {
-                ball.setSpeed(ball.getSpeed()/2);
+                for(Ball ball : ingameState.getBalls()) {
+                    ball.setSpeed(ball.getSpeed() / 2);
+                }
             }
         }.runTaskLater(Breakout.getInstance(),10);
+
     }
 
 
