@@ -19,7 +19,7 @@ public class Ball implements IDrawable, ICollidable {
     Vec2d direction;
     private double speed;
     private int width;
-
+    
     private BufferedImage image;
 
     //Debug
