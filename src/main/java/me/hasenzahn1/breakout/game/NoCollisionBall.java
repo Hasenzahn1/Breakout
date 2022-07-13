@@ -24,6 +24,9 @@ public class NoCollisionBall extends Ball {
 
     @Override 
     public void onCollide(ICollidable object) {
+        BoundingBox objectBoundingBox = object.getCollider();
+        if(objectBoundingBox ==  )
+
     }
 
 

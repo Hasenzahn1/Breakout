@@ -15,7 +15,7 @@ import java.awt.image.BufferedImage;
 public class BombOrb extends Orb{
 
     public BombOrb(int x, int y) {
-        super(x, y, ImageLoader.loadImage("game/orb_doubleshot.png"));
+        super(x, y, ImageLoader.loadImage("game/bomb.png"));
     }
 
     @Override
