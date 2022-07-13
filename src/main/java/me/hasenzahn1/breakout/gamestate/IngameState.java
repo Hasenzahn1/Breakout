@@ -1,5 +1,6 @@
 package me.hasenzahn1.breakout.gamestate;
 
+import me.hasenzahn1.breakout.Breakout;
 import me.hasenzahn1.breakout.game.Ball;
 import me.hasenzahn1.breakout.game.Paddle;
 import me.hasenzahn1.breakout.map.Map;
@@ -15,7 +16,7 @@ public class IngameState extends GameState{
 
     @Override
     public void start() {
-        paddle = new Paddle(60, 630);
+        paddle = new Paddle(Breakout.getInstance().getWidth() / 2, 630);
         ball = new Ball(321, 600);
     }
 
@@ -29,24 +30,24 @@ public class IngameState extends GameState{
     public void tick(double deltaTime) {
         if(map != null) map.tick(deltaTime);
 
-        //Collision
-        if(paddle.getCollider().intersects(ball.getCollider())){
-            //Ball collides with paddle
-            ball.onCollide(paddle);
-
-        }
-
-        for(Brick brick : map.getBricks()) {
-
-            if(brick.getCollider().intersects(ball.getCollider())) {
-                ball.onCollide(brick);
-                brick.onCollide(ball);
+        for(int i = 0; i < ball.getSpeed() + 1; i++) {
+            //Collision
+            if (paddle.getCollider().intersects(ball.getCollider())) {
+                //Ball collides with paddle
+                ball.onCollide(paddle);
+                paddle.onCollide(ball);
             }
+
+            Brick collide = map.checkCollision(ball);
+            if(collide != null){
+                collide.onCollide(ball);
+                ball.onCollide(collide);
+            }
+
+            //movement
+            ball.tick(deltaTime / (ball.getSpeed() + 1));
         }
-
-
         paddle.tick(deltaTime);
-        ball.tick(deltaTime);
     }
 
     @Override

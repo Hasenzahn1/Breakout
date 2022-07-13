@@ -6,6 +6,8 @@ import me.hasenzahn1.breakout.image.ImageLoader;
 import me.hasenzahn1.breakout.input.keyboard.IKeyClickable;
 import me.hasenzahn1.breakout.input.motion.IMouseMovable;
 import me.hasenzahn1.breakout.math.BoundingBox;
+import me.hasenzahn1.breakout.math.CombinedValues;
+import me.hasenzahn1.breakout.math.Vec2d;
 
 import java.awt.*;
 import java.awt.event.KeyEvent;
@@ -27,7 +29,8 @@ public class Paddle implements ICollidable, IDrawable, IMouseMovable, IKeyClicka
         this.y = y;
         this.image = ImageLoader.loadImage("game/paddle.png");
         this.width = (int) (image.getWidth() * 1.5);
-        speed = 7;
+        this.x -= width / 2;
+        speed = 4;
 
         Breakout.getInstance().getMouseMotionRegisterable().register(this);
         Breakout.getInstance().getKeyRegisterbable().register(this);
@@ -40,7 +43,18 @@ public class Paddle implements ICollidable, IDrawable, IMouseMovable, IKeyClicka
 
     @Override
     public void onCollide(ICollidable ball) {
+        if(ball instanceof Ball){
+            CombinedValues<Integer, Vec2d> result = getCollider().getCollideIndex(ball.getCollider().getMiddleX(), ball.getCollider().getMiddleY(), ((Ball) ball).getDirection());
+            if(result == null) return;
+            if(result.getT() == 0){
+                double x = result.getU().getX();
+                double percent = (x - this.x) / width;
+                System.out.println(percent);
+                double xDir = 100 * percent - 50;
+                ((Ball) ball).setDirection(new Vec2d(xDir, -30).normalize());
 
+            }
+        }
     }
 
     public void end(){

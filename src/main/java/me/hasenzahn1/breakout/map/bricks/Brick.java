@@ -3,6 +3,7 @@ package me.hasenzahn1.breakout.map.bricks;
 import me.hasenzahn1.breakout.display.IDrawable;
 import me.hasenzahn1.breakout.game.ICollidable;
 import me.hasenzahn1.breakout.image.ImageLoader;
+import me.hasenzahn1.breakout.map.Map;
 import me.hasenzahn1.breakout.math.BoundingBox;
 
 import java.awt.*;
@@ -11,6 +12,7 @@ import java.awt.image.BufferedImage;
 public class Brick implements IDrawable, ICollidable {
 
     public static final BufferedImage[] BRICK_IMAGES = loadAllBrickImages();
+    public static final BufferedImage[] BREAKING_STAGES = loadBreakingStages();
 
     private static BufferedImage[] loadAllBrickImages() {
         BufferedImage[] images = new BufferedImage[16];
@@ -20,15 +22,29 @@ public class Brick implements IDrawable, ICollidable {
         return images;
     }
 
-    protected int x, y;
+    public static BufferedImage[] loadBreakingStages(){
+        BufferedImage[] images = new BufferedImage[3];
+        images[0] = ImageLoader.loadImage("game/damage_small.png");
+        images[1] = ImageLoader.loadImage("game/damage_medium.png");
+        images[2] = ImageLoader.loadImage("game/damage_heavy.png");
+        return images;
+    }
 
-    protected int health;
+    protected int x, y, tx, ty;
+
+    protected int health, damage;
     protected BufferedImage image;
     protected final int debug;
+    protected Map map;
+
+    //debug
+    public boolean collided;
+    public boolean result;
 
 
     public Brick(int nHealth,int imageData){
         health = nHealth;
+        damage = 0;
 
         image = BRICK_IMAGES[imageData];
         debug = imageData;
@@ -42,6 +58,10 @@ public class Brick implements IDrawable, ICollidable {
     @Override
     public void render(Graphics g) {
         g.drawImage(image, x, y, null);
+
+        if(damage != 0){
+            g.drawImage(BREAKING_STAGES[damage - 1], x, y, null);
+        }
     }
 
     public void setX(int x) {
@@ -64,6 +84,7 @@ public class Brick implements IDrawable, ICollidable {
 
     public void hit(int healthAmount){
         health -= healthAmount;
+        damage += healthAmount;
     }
 
     public boolean isBroken(){
@@ -72,12 +93,38 @@ public class Brick implements IDrawable, ICollidable {
 
     @Override
     public BoundingBox getCollider() {
-        return new BoundingBox(x, y, image.getWidth(), image.getHeight());
+        return new BoundingBox(x, y, image.getWidth() + 1, image.getHeight() + 1);
     }
 
     @Override
     public void onCollide(ICollidable ball) {
         hit(1);
-        System.out.println(health);
+        if(isBroken()){
+            map.removeBrick(this);
+        }
+    }
+
+    public Map getMap() {
+        return map;
+    }
+
+    public void setMap(Map map) {
+        this.map = map;
+    }
+
+    public int getTx() {
+        return tx;
+    }
+
+    public void setTx(int tx) {
+        this.tx = tx;
+    }
+
+    public int getTy() {
+        return ty;
+    }
+
+    public void setTy(int ty) {
+        this.ty = ty;
     }
 }
