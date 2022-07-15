@@ -16,7 +16,7 @@ import java.awt.image.BufferedImage;
 
 public class Paddle implements ICollidable, IDrawable, IMouseMovable, IKeyClickable {
 
-
+    public static final int WIDTH = 48;
     private float x;
     private final int y;
     private int width;
@@ -29,7 +29,7 @@ public class Paddle implements ICollidable, IDrawable, IMouseMovable, IKeyClicka
         this.x = x;
         this.y = y;
         this.image = ImageLoader.loadImage("game/paddle.png");
-        this.width = (int) (image.getWidth() * 1.5);
+        this.width = WIDTH;
         this.x -= width / 2;
         speed = 4;
 
@@ -119,6 +119,10 @@ public class Paddle implements ICollidable, IDrawable, IMouseMovable, IKeyClicka
             speed -=5;
         }
 
+    }
+
+    public void setWidth(int newWidth){
+        width = newWidth;
     }
 }
 

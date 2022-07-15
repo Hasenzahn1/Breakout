@@ -143,4 +143,8 @@ public class IngameState extends GameState implements IKeyClickable {
     public void keyReleased(KeyEvent e) {
 
     }
+
+    public Paddle getPaddle(){
+        return paddle;
+    }
 }
