@@ -16,21 +16,23 @@ public class SpeedOrb extends Orb{
 
 
     public SpeedOrb(int x, int y) {
-        super(x, y, ImageLoader.loadImage("game/orb_doubleshot.png"));
+        super(x, y, ImageLoader.loadImage("game/orbs/orb_speed.png"));
     }
 
     @Override
     public void onCollide(ICollidable object) {
+        super.onCollide(object);
         IngameState ingameState = (IngameState) Breakout.getInstance().getGameStateManager().getGameState(GameState.INGAME_STATE);
-        for(Ball ball : ingameState.getBalls()) {
-            ball.setSpeed(ball.getSpeed() * 2);
-        }
+
+        if(IngameState.SPEED_MODIFY_TASK != null) IngameState.SPEED_MODIFY_TASK.cancel();
+        if(IngameState.CURRENT_SPEED > Ball.SPEED) return;
+
+        ingameState.setCurrentSpeed(IngameState.CURRENT_SPEED * 1.4f);
         BreakoutRunnable timer = new BreakoutRunnable() {
             @Override
             public void run() {
-                for(Ball ball : ingameState.getBalls()) {
-                    ball.setSpeed(ball.getSpeed() / 2);
-                }
+                ingameState.setCurrentSpeed(Ball.SPEED);
+                IngameState.SPEED_MODIFY_TASK = null;
             }
         }.runTaskLater(Breakout.getInstance(),10);
 

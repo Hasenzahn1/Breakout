@@ -2,6 +2,8 @@ package me.hasenzahn1.breakout.game;
 
 import me.hasenzahn1.breakout.Breakout;
 import me.hasenzahn1.breakout.display.IDrawable;
+import me.hasenzahn1.breakout.gamestate.GameState;
+import me.hasenzahn1.breakout.gamestate.IngameState;
 import me.hasenzahn1.breakout.image.ImageLoader;
 import me.hasenzahn1.breakout.input.click.IMouseClickable;
 import me.hasenzahn1.breakout.math.BoundingBox;
@@ -15,12 +17,15 @@ import java.util.ArrayList;
 
 public class Ball implements IDrawable, ICollidable {
 
-    private float x, y;
-    Vec2d direction;
-    private double speed;
-    private int width;
-    
-    private BufferedImage image;
+    public static BufferedImage DEFAULT = ImageLoader.loadImage("game/ball.png");
+    public static float SPEED = 4;
+
+    protected float x, y;
+    protected Vec2d direction;
+    protected double speed;
+    protected int width;
+
+    protected BufferedImage image;
 
     //Debug
     private ArrayList<Vec2d> hitPositions;
@@ -30,12 +35,14 @@ public class Ball implements IDrawable, ICollidable {
         y = newY;
         direction = new Vec2d(Math.random()-0.5,-Math.random());
         direction.normalize();
-        direction = new Vec2d(639, 298).subtract(x, y).normalize();
+        /*direction = new Vec2d(639, 298).subtract(x, y).normalize();
+        direction = new Vec2d(1, -1).normalize();
         System.out.println(direction.getDistance());
+         */
         //direction = new Vec2d(0, 1);
-        speed = 3;
-        image = ImageLoader.loadImage("game/ball.png");
-        width = 13;
+        speed = SPEED;
+        image = DEFAULT;
+        width = 12;
         hitPositions = new ArrayList<>();
     }
 
@@ -49,12 +56,15 @@ public class Ball implements IDrawable, ICollidable {
             if(x < 0) x=0;
             else x = Breakout.getInstance().getWidth() - width;
         }
-        if(y < 0 || y > Breakout.getInstance().getHeight()-width){
+        if(y < 0){
             direction.multiply(1,-1);
             if(y < 0) y=0;
             else y = Breakout.getInstance().getHeight() - width;
         }
 
+        if(y > Breakout.getInstance().getHeight()){
+            ((IngameState) Breakout.getInstance().getGameStateManager().getGameState(GameState.INGAME_STATE)).removeBall(this);
+        }
     }
 
     @Override
@@ -111,4 +121,5 @@ public class Ball implements IDrawable, ICollidable {
     public void setDirection(Vec2d direction) {
         this.direction = direction;
     }
+
 }

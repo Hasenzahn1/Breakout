@@ -3,6 +3,7 @@ package me.hasenzahn1.breakout;
 import me.hasenzahn1.breakout.display.Display;
 import me.hasenzahn1.breakout.gamestate.GameState;
 import me.hasenzahn1.breakout.gamestate.GameStateManager;
+import me.hasenzahn1.breakout.gamestate.IngameState;
 import me.hasenzahn1.breakout.input.click.IMouseRegisterable;
 import me.hasenzahn1.breakout.input.click.MouseListener;
 import me.hasenzahn1.breakout.input.keyboard.IKeyRegisterable;
@@ -136,6 +137,7 @@ public class Breakout implements Runnable{
 
             if(timer >= 1000000000){
                 System.out.println("Ticks and Frames: " + ticks);
+                //System.out.println("Balls in the game: " + ((IngameState)gameStateManager.getGameState(GameState.INGAME_STATE)).getBalls().size());
                 ticks = 0;
                 timer = 0;
             }

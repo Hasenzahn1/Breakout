@@ -15,6 +15,7 @@ public class KeyboardListener implements KeyListener, IKeyRegisterable{
     @Override
     public void keyTyped(KeyEvent e) {
         for(int i = clickables.size() - 1; i >= 0; i--){
+            if(i >= clickables.size()) continue;
             clickables.get(i).keyTyped(e);
         }
     }

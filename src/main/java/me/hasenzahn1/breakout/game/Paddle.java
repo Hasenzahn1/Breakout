@@ -49,7 +49,7 @@ public class Paddle implements ICollidable, IDrawable, IMouseMovable, IKeyClicka
             if(result.getT() == 0){
                 double x = result.getU().getX();
                 double percent = (x - this.x) / width;
-                System.out.println(percent);
+                //System.out.println(percent);
                 double xDir = 100 * percent - 50;
                 ((Ball) ball).setDirection(new Vec2d(xDir, -30).normalize());
 

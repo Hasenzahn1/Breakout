@@ -63,7 +63,7 @@ public class MapLoader {
         } else if (unbreakable == 1){
             return new UnbreakableBrick(0,color);
         } else {
-            return new Brick(health,color);
+            return new Brick(health, color); // BRICK
         }
 
 
