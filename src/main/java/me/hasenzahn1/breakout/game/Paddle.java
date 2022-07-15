@@ -2,6 +2,7 @@ package me.hasenzahn1.breakout.game;
 
 import me.hasenzahn1.breakout.Breakout;
 import me.hasenzahn1.breakout.display.IDrawable;
+import me.hasenzahn1.breakout.game.balls.Ball;
 import me.hasenzahn1.breakout.image.ImageLoader;
 import me.hasenzahn1.breakout.input.keyboard.IKeyClickable;
 import me.hasenzahn1.breakout.input.motion.IMouseMovable;

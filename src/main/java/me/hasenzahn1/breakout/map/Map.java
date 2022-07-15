@@ -1,14 +1,12 @@
 package me.hasenzahn1.breakout.map;
 
 import me.hasenzahn1.breakout.display.IDrawable;
-import me.hasenzahn1.breakout.game.Ball;
+import me.hasenzahn1.breakout.game.balls.Ball;
 import me.hasenzahn1.breakout.map.bricks.Brick;
-import me.hasenzahn1.breakout.math.CollisionHelper;
 import me.hasenzahn1.breakout.math.CombinedValues;
 import me.hasenzahn1.breakout.math.Vec2d;
 
 import java.awt.*;
-import java.util.ArrayList;
 
 public class Map implements IDrawable {
     public static final int MAP_X = 32;

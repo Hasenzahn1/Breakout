@@ -2,7 +2,7 @@ package me.hasenzahn1.breakout.game.orbs;
 
 
 import me.hasenzahn1.breakout.Breakout;
-import me.hasenzahn1.breakout.game.Ball;
+import me.hasenzahn1.breakout.game.balls.Ball;
 import me.hasenzahn1.breakout.game.ICollidable;
 import me.hasenzahn1.breakout.gamestate.GameState;
 import me.hasenzahn1.breakout.gamestate.IngameState;

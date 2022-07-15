@@ -1,7 +1,7 @@
 package me.hasenzahn1.breakout.gamestate;
 
 import me.hasenzahn1.breakout.Breakout;
-import me.hasenzahn1.breakout.game.Ball;
+import me.hasenzahn1.breakout.game.balls.Ball;
 import me.hasenzahn1.breakout.game.Paddle;
 import me.hasenzahn1.breakout.game.orbs.Orb;
 import me.hasenzahn1.breakout.input.keyboard.IKeyClickable;

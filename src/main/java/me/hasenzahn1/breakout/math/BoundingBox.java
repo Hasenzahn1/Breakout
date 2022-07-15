@@ -1,8 +1,6 @@
 package me.hasenzahn1.breakout.math;
 
-import me.hasenzahn1.breakout.game.Ball;
-
-import java.util.Arrays;
+import me.hasenzahn1.breakout.game.balls.Ball;
 
 public class BoundingBox {
 

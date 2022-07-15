@@ -1,7 +1,8 @@
-package me.hasenzahn1.breakout.game;
+package me.hasenzahn1.breakout.game.balls;
 
 import me.hasenzahn1.breakout.Breakout;
 import me.hasenzahn1.breakout.display.IDrawable;
+import me.hasenzahn1.breakout.game.ICollidable;
 import me.hasenzahn1.breakout.gamestate.GameState;
 import me.hasenzahn1.breakout.gamestate.IngameState;
 import me.hasenzahn1.breakout.image.ImageLoader;
