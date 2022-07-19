@@ -16,7 +16,7 @@ import java.util.List;
 public abstract class Orb implements IDrawable,ICollidable{
 
     public static int ORB_SPEED = 2;
-    public int x, y;
+    public float x, y;
     public BufferedImage image;
 
     public Orb(int x, int y, BufferedImage image){
@@ -33,12 +33,12 @@ public abstract class Orb implements IDrawable,ICollidable{
 
     @Override
     public void render(Graphics g) {
-        g.drawImage(image, x, y, (int) (image.getWidth() * 1.2), (int) (image.getHeight() * 1.1), null);
+        g.drawImage(image, (int) x, (int) y, (int) (image.getWidth() * 1.2), (int) (image.getHeight() * 1.1), null);
     }
 
     @Override
     public BoundingBox getCollider() {
-        return new BoundingBox(x, y, (int) (image.getWidth() * 1.2), (int) (image.getHeight() * 1.2));
+        return new BoundingBox((int) x, (int) y, (int) (image.getWidth() * 1.2), (int) (image.getHeight() * 1.2));
     }
 
     @Override

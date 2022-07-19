@@ -148,6 +148,7 @@ public class IngameState extends GameState implements IKeyClickable, IMouseClick
             }
 
         }
+
         for(Orb orb : currentOrbs) {
             orb.tick(deltaTime);
         }
