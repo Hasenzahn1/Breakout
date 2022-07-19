@@ -41,7 +41,7 @@ public class Map implements IDrawable {
 
     public Brick checkCollision(Ball ball){
         for(int x = 0; x < bricks.length; x++){
-            for(int y = 0; y < bricks.length; y++){
+            for(int y = 0; y < bricks[0].length; y++){
                 if(bricks[x][y] == null) continue;
                 Brick collide = bricks[x][y];
                 if(collide.getCollider().intersects(ball.getCollider())){

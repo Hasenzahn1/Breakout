@@ -30,7 +30,7 @@ public class SafeWall implements IDrawable, ICollidable {
 
     @Override
     public BoundingBox getCollider() {
-        return new BoundingBox(-40, Breakout.getInstance().getHeight() - 7, Breakout.getInstance().getWidth() + 80, 10);
+        return new BoundingBox(-40, Breakout.getInstance().getHeight() - 7, Breakout.getInstance().getWidth() + 80, 80);
     }
 
     @Override

@@ -10,6 +10,8 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.stream.Collectors;
 
 public class MapLoader {
 
@@ -18,6 +20,7 @@ public class MapLoader {
         URL folderURL = MapLoader.class.getClassLoader().getResource("maps");
         String path = folderURL.getFile().replace("%20"," ");
         File folder = new File(path);
+        System.out.println(Arrays.stream(folder.listFiles()).map((f) -> f.getName()).collect(Collectors.toList()));
         File[] mapFiles = folder.listFiles((dir,name) -> name.endsWith(".blf"));
         for(int i = 0; i < mapFiles.length; i++){
             maps.add(mapFiles[i].getName());
@@ -27,6 +30,7 @@ public class MapLoader {
 
     public static Map loadMap(String name){
         String path = "maps/" + name;
+        System.out.println(path);
         InputStream inputStream = MapLoader.class.getClassLoader().getResourceAsStream(path);
         BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(inputStream));
 
@@ -63,7 +67,7 @@ public class MapLoader {
         } else if (unbreakable == 1){
             return new UnbreakableBrick(0,color);
         } else {
-            return new Brick(health, color); // BRICK
+            return new PowerupBrick(health, color); // BRICK
         }
 
 

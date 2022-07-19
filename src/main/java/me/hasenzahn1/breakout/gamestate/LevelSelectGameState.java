@@ -7,11 +7,18 @@ import me.hasenzahn1.breakout.map.Map;
 import me.hasenzahn1.breakout.map.MapLoader;
 
 import java.awt.*;
+import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 
 public class LevelSelectGameState extends GameState{
 
     ArrayList<Button> buttons;
+
+    private final BufferedImage background;
+
+    public LevelSelectGameState() {
+        background = ImageLoader.loadImage("levelselection_background.png");
+    }
 
     @Override
     public void start() {
@@ -45,6 +52,8 @@ public class LevelSelectGameState extends GameState{
 
     @Override
     public void render(Graphics g) {
+        g.drawImage(background, 0, 0, Breakout.getInstance().getWidth(), Breakout.getInstance().getHeight(), null);
+
         for(int i = 0; i < buttons.size(); i++){
             buttons.get(i).render(g);
         }

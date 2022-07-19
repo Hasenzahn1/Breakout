@@ -11,6 +11,7 @@ import me.hasenzahn1.breakout.map.MapLoader;
 import me.hasenzahn1.breakout.math.BoundingBox;
 
 import java.awt.*;
+import java.awt.image.BufferedImage;
 import java.util.Locale;
 
 public class GameEndOverlay implements IDrawable {
@@ -21,15 +22,18 @@ public class GameEndOverlay implements IDrawable {
     private String title;
     private BoundingBox bb;
     private int x, y, width, height;
+    private final BufferedImage background;
 
     private boolean shown;
 
     private Font titleFont, scoreFont;
     private int score;
+    private boolean showOtherText;
 
     public GameEndOverlay(String title, int score){
         this.title = title;
         this.score = score;
+        background = ImageLoader.loadImage("gameEnd_overlay.png");
         shown = false;
 
         width = 300;
@@ -42,21 +46,21 @@ public class GameEndOverlay implements IDrawable {
         titleFont = new Font("TimesRoman", Font.PLAIN, 40);
         scoreFont = new Font("TimesRoman", Font.PLAIN, 20);
 
-        levelSelectButton = new Button(x, y, 200, 200 / 4, ImageLoader.loadImage("gui/levelselection.png"), ImageLoader.loadImage("gui/levelselection_pressed.png") ,(btn) -> {
+        levelSelectButton = new Button(x, y, 200, 200 / 4, ImageLoader.loadImage("gui/levelselection_pressed.png"), ImageLoader.loadImage("gui/levelselection.png") ,(btn) -> {
             Breakout.getInstance().getGameStateManager().setGameState(GameState.LEVEL_SELECT_STATE);
         });
         levelSelectButton.setResetOnRelease(true);
         levelSelectButton.setX(x + (width - levelSelectButton.getWidth()) / 2);
         levelSelectButton.setY(y + height - levelSelectButton.getHeight() * 2 - 20 * 2);
 
-        mainMenuButton = new Button(x, y, 200, 200 / 4, ImageLoader.loadImage("gui/mainMenu.png"), ImageLoader.loadImage("gui/mainMenu_pressed.png") ,(btn) -> {
+        mainMenuButton = new Button(x, y, 200, 200 / 4, ImageLoader.loadImage("gui/mainMenu_pressed.png"), ImageLoader.loadImage("gui/mainMenu.png") ,(btn) -> {
             Breakout.getInstance().getGameStateManager().setGameState(GameState.MAIN_MENU_STATE);
         });
         mainMenuButton.setResetOnRelease(true);
         mainMenuButton.setX(x + (width - mainMenuButton.getWidth()) / 2);
         mainMenuButton.setY(y + height - mainMenuButton.getHeight() * 3 - 20 * 3);
 
-        retryButton = new Button(x, y, 200, 50, ImageLoader.loadImage("gui/retry.png"), ImageLoader.loadImage("gui/retry_pressed.png"), (btn) -> {
+        retryButton = new Button(x, y, 200, 50, ImageLoader.loadImage("gui/retry_pressed.png"), ImageLoader.loadImage("gui/retry.png"), (btn) -> {
             IngameState state = (IngameState) Breakout.getInstance().getGameStateManager().getGameState(GameState.INGAME_STATE);
             Map map = MapLoader.loadMap(state.getMap().getName());
             state.setMap(map);
@@ -77,6 +81,7 @@ public class GameEndOverlay implements IDrawable {
         levelSelectButton.register();
         mainMenuButton.register();
         retryButton.register();
+        showOtherText = ((IngameState) Breakout.getInstance().getGameStateManager().getGameState(GameState.INGAME_STATE)).getMap().getName().contains("map_6") && title.contains("won");
     }
 
     public void hide(){
@@ -98,8 +103,9 @@ public class GameEndOverlay implements IDrawable {
     public void render(Graphics g) {
         if(!shown) return;
 
-        g.setColor(Color.BLACK);
-        g.fillRect(x, y, width, height);
+        g.drawImage(background, x, y, width, height, null);
+        //g.setColor(Color.BLACK);
+        //g.fillRect(x, y, width, height);
 
 
 
@@ -124,6 +130,12 @@ public class GameEndOverlay implements IDrawable {
         g.drawString(text, bb.getMiddleX() - scoreText1Width / 2, py + g.getFontMetrics().getHeight());
         int scoreText2Width = g.getFontMetrics().stringWidth(text2);
         g.drawString(text2, bb.getMiddleX() - scoreText2Width / 2, py + g.getFontMetrics().getHeight() * 2);
+
+        if(showOtherText){
+            String otherText = "I always come back";
+            int otwidth = g.getFontMetrics().stringWidth(otherText);
+            g.drawString(otherText, bb.getMiddleX() - otwidth / 2, py + g.getFontMetrics().getHeight() * 3 + 10);
+        }
 
         levelSelectButton.render(g);
         retryButton.render(g);
