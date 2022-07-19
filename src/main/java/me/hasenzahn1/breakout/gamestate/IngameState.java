@@ -94,9 +94,9 @@ public class IngameState extends GameState implements IKeyClickable, IMouseClick
             running = false;
             balls.add(new Ball(321, 600, this));
             paddle.setX(Breakout.getInstance().getWidth() / 2 - paddle.getCollider().getWidth() / 2);
+            currentOrbs.clear();
 
             if(health == 0){
-                currentOrbs.clear();
                 gameEndOverlay.setScore(score);
                 gameEndOverlay.setTitle("You Lost!");
                 gameEndOverlay.show();

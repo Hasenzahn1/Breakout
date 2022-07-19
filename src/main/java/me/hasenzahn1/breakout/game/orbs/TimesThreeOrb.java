@@ -4,6 +4,8 @@ package me.hasenzahn1.breakout.game.orbs;
 import me.hasenzahn1.breakout.Breakout;
 import me.hasenzahn1.breakout.game.balls.Ball;
 import me.hasenzahn1.breakout.game.ICollidable;
+import me.hasenzahn1.breakout.game.balls.BombBall;
+import me.hasenzahn1.breakout.game.balls.NoCollisionBall;
 import me.hasenzahn1.breakout.gamestate.GameState;
 import me.hasenzahn1.breakout.gamestate.IngameState;
 import me.hasenzahn1.breakout.image.ImageLoader;
@@ -25,6 +27,8 @@ public class TimesThreeOrb extends Orb{
         IngameState ingameState = (IngameState) Breakout.getInstance().getGameStateManager().getGameState(GameState.INGAME_STATE);
 
         for(Ball ball : new ArrayList<>(ingameState.getBalls())) {
+            if(ball instanceof NoCollisionBall) continue;
+            if(ball instanceof BombBall) continue;
             if(ingameState.getBalls().size() >= 1000) return;
             for(int i = 0; i < 2; i++) {
                 Ball ball1 = new Ball(ball.getCollider().getMiddleX(), ball.getCollider().getY(), ingameState);

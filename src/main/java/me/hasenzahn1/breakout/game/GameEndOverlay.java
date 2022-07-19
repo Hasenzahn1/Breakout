@@ -49,14 +49,14 @@ public class GameEndOverlay implements IDrawable {
         levelSelectButton.setX(x + (width - levelSelectButton.getWidth()) / 2);
         levelSelectButton.setY(y + height - levelSelectButton.getHeight() * 2 - 20 * 2);
 
-        mainMenuButton = new Button(x, y, 200, 200 / 4, ImageLoader.loadImage("gui/levelselection.png"), ImageLoader.loadImage("gui/levelselection_pressed.png") ,(btn) -> {
+        mainMenuButton = new Button(x, y, 200, 200 / 4, ImageLoader.loadImage("gui/mainMenu.png"), ImageLoader.loadImage("gui/mainMenu_pressed.png") ,(btn) -> {
             Breakout.getInstance().getGameStateManager().setGameState(GameState.MAIN_MENU_STATE);
         });
         mainMenuButton.setResetOnRelease(true);
         mainMenuButton.setX(x + (width - mainMenuButton.getWidth()) / 2);
         mainMenuButton.setY(y + height - mainMenuButton.getHeight() * 3 - 20 * 3);
 
-        retryButton = new Button(x, y, 200, 50, ImageLoader.loadImage("gui/levelselection_pressed.png"), ImageLoader.loadImage("gui/levelselection.png"), (btn) -> {
+        retryButton = new Button(x, y, 200, 50, ImageLoader.loadImage("gui/retry.png"), ImageLoader.loadImage("gui/retry_pressed.png"), (btn) -> {
             IngameState state = (IngameState) Breakout.getInstance().getGameStateManager().getGameState(GameState.INGAME_STATE);
             Map map = MapLoader.loadMap(state.getMap().getName());
             state.setMap(map);

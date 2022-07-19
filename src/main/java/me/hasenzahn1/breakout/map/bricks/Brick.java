@@ -44,7 +44,6 @@ public class Brick implements IDrawable, ICollidable {
 
     public Brick(int nHealth,int imageData){
         health = nHealth;
-        health = 0;
         damage = 0;
 
         image = BRICK_IMAGES[imageData];
