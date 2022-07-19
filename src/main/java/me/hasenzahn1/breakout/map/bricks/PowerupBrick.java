@@ -14,7 +14,7 @@ import java.util.Random;
 
 public class PowerupBrick extends Brick{
 
-    public static List<Class<? extends Orb>> ORBS = Arrays.asList(TimesThreeOrb.class, PlusThreeOrb.class, SlowOrb.class, SpeedOrb.class, NoCollisionOrb.class);
+    public static List<Class<? extends Orb>> ORBS = Arrays.asList(SafeWallOrb.class, BombOrb.class, ShrinkenOrb.class, WidenOrb.class, TimesThreeOrb.class, PlusThreeOrb.class, SlowOrb.class, SpeedOrb.class, NoCollisionOrb.class);
     public PowerupBrick(int nHealth, int imageData) {
         super(nHealth, imageData);
     }

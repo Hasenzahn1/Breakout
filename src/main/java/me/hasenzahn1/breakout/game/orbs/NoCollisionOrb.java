@@ -24,7 +24,7 @@ public class NoCollisionOrb extends Orb{
         super.onCollide(object);
         IngameState ingameState = (IngameState) Breakout.getInstance().getGameStateManager().getGameState(GameState.INGAME_STATE);
 
-        Ball ball = new NoCollisionBall(object.getCollider().getMiddleX(), object.getCollider().getY() - 20);
+        Ball ball = new NoCollisionBall(object.getCollider().getMiddleX(), object.getCollider().getY() - 20, ingameState);
         ball.setSpeed(ball.getSpeed() * 2);
         ingameState.addBall(ball);
     }

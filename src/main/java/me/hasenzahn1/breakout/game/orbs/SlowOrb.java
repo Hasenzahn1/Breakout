@@ -25,9 +25,7 @@ public class SlowOrb extends Orb{
         IngameState ingameState = (IngameState) Breakout.getInstance().getGameStateManager().getGameState(GameState.INGAME_STATE);
 
         if(IngameState.SPEED_MODIFY_TASK != null) IngameState.SPEED_MODIFY_TASK.cancel();
-        if(IngameState.CURRENT_SPEED < Ball.SPEED) return;
-
-        ingameState.setCurrentSpeed(IngameState.CURRENT_SPEED / 1.4f);
+        if(IngameState.CURRENT_SPEED >= Ball.SPEED) ingameState.setCurrentSpeed(IngameState.CURRENT_SPEED / 1.4f);
         BreakoutRunnable timer = new BreakoutRunnable() {
             @Override
             public void run() {
@@ -35,6 +33,7 @@ public class SlowOrb extends Orb{
                 IngameState.SPEED_MODIFY_TASK = null;
             }
         }.runTaskLater(Breakout.getInstance(),10);
+        IngameState.SPEED_MODIFY_TASK = timer;
     }
 
 

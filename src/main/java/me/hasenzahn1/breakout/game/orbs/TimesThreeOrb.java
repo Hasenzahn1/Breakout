@@ -27,7 +27,7 @@ public class TimesThreeOrb extends Orb{
         for(Ball ball : new ArrayList<>(ingameState.getBalls())) {
             if(ingameState.getBalls().size() >= 1000) return;
             for(int i = 0; i < 2; i++) {
-                Ball ball1 = new Ball(ball.getCollider().getMiddleX(), ball.getCollider().getY());
+                Ball ball1 = new Ball(ball.getCollider().getMiddleX(), ball.getCollider().getY(), ingameState);
                 ingameState.addBall(ball1);
             }
         }

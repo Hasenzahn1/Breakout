@@ -20,15 +20,15 @@ public class PlusThreeOrb extends Orb{
         super.onCollide(object);
         IngameState ingameState = (IngameState) Breakout.getInstance().getGameStateManager().getGameState(GameState.INGAME_STATE);
 
-        Ball ball1 = new Ball(object.getCollider().getMiddleX(), object.getCollider().getY()-20);
+        Ball ball1 = new Ball(object.getCollider().getMiddleX(), object.getCollider().getY()-20, ingameState);
         ball1.setDirection(new Vec2d(1,  - 1).normalize());
         ingameState.addBall(ball1);
 
-        Ball ball2 = new Ball(object.getCollider().getMiddleX(), object.getCollider().getY()-20);
+        Ball ball2 = new Ball(object.getCollider().getMiddleX(), object.getCollider().getY()-20, ingameState);
         ball2.setDirection(new Vec2d(-0.1, 10).normalize());
         ingameState.addBall(ball2);
 
-        Ball ball3 = new Ball(object.getCollider().getMiddleX(), object.getCollider().getY()-20);
+        Ball ball3 = new Ball(object.getCollider().getMiddleX(), object.getCollider().getY()-20, ingameState);
         ball3.setDirection(new Vec2d(-1, - 1).normalize());
         ingameState.addBall(ball3);
     }

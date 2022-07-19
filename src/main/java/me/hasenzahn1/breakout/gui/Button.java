@@ -76,6 +76,10 @@ public class Button implements IDrawable, IMouseClickable {
         clicked = !clicked;
     }
 
+    public void register(){
+        Breakout.getInstance().getMouseRegisterable().register(this);
+    }
+
     public void remove(){
         Breakout.getInstance().getMouseRegisterable().unregister(this);
     }
@@ -94,5 +98,21 @@ public class Button implements IDrawable, IMouseClickable {
 
     public void setClicked(boolean clicked) {
         this.clicked = clicked;
+    }
+
+    public void setX(int x) {
+        this.x = x;
+    }
+
+    public void setY(int y) {
+        this.y = y;
+    }
+
+    public int getWidth() {
+        return width;
+    }
+
+    public int getHeight() {
+        return height;
     }
 }

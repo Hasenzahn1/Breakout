@@ -30,7 +30,7 @@ public class MapLoader {
         InputStream inputStream = MapLoader.class.getClassLoader().getResourceAsStream(path);
         BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(inputStream));
 
-        Map map = new Map();
+        Map map = new Map(name);
         int y = 0;
         for(String zeile : bufferedReader.lines().toList()){
             String[] brickData = zeile.split(" ");

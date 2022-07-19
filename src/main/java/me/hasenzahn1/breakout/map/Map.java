@@ -3,6 +3,7 @@ package me.hasenzahn1.breakout.map;
 import me.hasenzahn1.breakout.display.IDrawable;
 import me.hasenzahn1.breakout.game.balls.Ball;
 import me.hasenzahn1.breakout.map.bricks.Brick;
+import me.hasenzahn1.breakout.map.bricks.UnbreakableBrick;
 import me.hasenzahn1.breakout.math.CombinedValues;
 import me.hasenzahn1.breakout.math.Vec2d;
 
@@ -13,9 +14,13 @@ public class Map implements IDrawable {
     public static final int MAP_Y = 32;
 
     private final Brick[][] bricks;
+    private final String name;
+    private int count;
 
-    public Map(){
+    public Map(String name){
         bricks = new Brick[18][32];
+        this.name = name;
+        count = 0;
     }
 
     public void setBrick(int x, int y, Brick brick){
@@ -26,10 +31,12 @@ public class Map implements IDrawable {
         brick.setY(MAP_Y + y * Brick.BRICK_IMAGES[0].getHeight() + y);
         brick.setMap(this);
         bricks[x][y] = brick;
+        if(!(brick instanceof UnbreakableBrick)) count++;
     }
 
     public void removeBrick(Brick brick){
         bricks[brick.getTx()][brick.getTy()] = null;
+        count --;
     }
 
     public Brick checkCollision(Ball ball){
@@ -83,5 +90,17 @@ public class Map implements IDrawable {
                 bricks[x][y].render(g);
             }
         }
+    }
+
+    public Brick[][] getBricks() {
+        return bricks;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public boolean finished(){
+        return count == 0;
     }
 }

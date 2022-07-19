@@ -3,6 +3,7 @@ package me.hasenzahn1.breakout.game.balls;
 import me.hasenzahn1.breakout.Breakout;
 import me.hasenzahn1.breakout.display.IDrawable;
 import me.hasenzahn1.breakout.game.ICollidable;
+import me.hasenzahn1.breakout.game.ScoreManager;
 import me.hasenzahn1.breakout.gamestate.GameState;
 import me.hasenzahn1.breakout.gamestate.IngameState;
 import me.hasenzahn1.breakout.image.ImageLoader;
@@ -18,7 +19,7 @@ import java.util.ArrayList;
 
 public class Ball implements IDrawable, ICollidable {
 
-    public static BufferedImage DEFAULT = ImageLoader.loadImage("game/ball.png");
+    public static BufferedImage DEFAULT = ImageLoader.loadImage("game/balls/ball.png");
     public static float SPEED = 4;
 
     protected float x, y;
@@ -27,24 +28,22 @@ public class Ball implements IDrawable, ICollidable {
     protected int width;
 
     protected BufferedImage image;
+    private ScoreManager scoreManager;
 
     //Debug
     private ArrayList<Vec2d> hitPositions;
 
-    public Ball(float newX, float newY){
+
+    public Ball(float newX, float newY, IngameState ingameState){
         x = newX;
         y = newY;
         direction = new Vec2d(Math.random()-0.5,-Math.random());
         direction.normalize();
-        /*direction = new Vec2d(639, 298).subtract(x, y).normalize();
-        direction = new Vec2d(1, -1).normalize();
-        System.out.println(direction.getDistance());
-         */
-        //direction = new Vec2d(0, 1);
         speed = SPEED;
         image = DEFAULT;
         width = 12;
         hitPositions = new ArrayList<>();
+        scoreManager = new ScoreManager(ingameState);
     }
 
     @Override
@@ -123,4 +122,7 @@ public class Ball implements IDrawable, ICollidable {
         this.direction = direction;
     }
 
+    public ScoreManager getScoreManager() {
+        return scoreManager;
+    }
 }
